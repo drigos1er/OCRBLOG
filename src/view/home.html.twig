@@ -1,0 +1,150 @@
+{% extends "layout.html.twig" %}
+{% block head %}
+    <title>N'GORAN RODRIGUE-Developpeur Web</title>{% endblock %}
+{% block content %}
+<!-- Main Start -->
+<main>
+
+    <!-- Home Banner Start -->
+    <section id="home" class="home-banner gray-bg" style="background-image: url(public/img/cla.jpg);">
+        <div class="sec-round">
+            <div class="container full-height">
+                <div class="round-item round-item-1"></div>
+                <div class="round-item round-item-2"></div>
+                <div class="round-item round-item-3"></div>
+                <div class="round-item round-item-4"></div>
+                <div class="round-item round-item-5"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row full-screen align-items-center">
+                <div class="col col-md-12 col-lg-8 col-xl-6 p-80px-tb">
+                    <div class="home-text-center theme-after m-50px-t">
+                        <h4>Hello, Mon nom est</h4>
+                        <h5 class="font-alt">KOUADIO RODRIGUE N'GORAN</h5>
+                        <p>Je suis developpeur d'applications et un Fana du web.</p>
+                        <div class="btn-bar">
+                            <a href="http://localhost/BLOGOCR/BlogOC/public/files/MonCV.pdf" class="m-btn-link m-btn-link-white theme-after" target="_blank">Telechager mon CV</a>
+                        </div>
+                    </div> <!-- home-text-center -->
+                </div> <!-- col -->
+            </div>
+
+        </div><!-- container -->
+        <a href="#aboutus" data-scroll="smooth" class="mouse-icon hidden-sm"><span class="wheel"></span></a>
+    </section>
+    <!-- Home Banner End -->
+
+
+    <!-- About us -->
+    <section id="aboutus" class="section p-0px-b">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="about-left">
+                        <h2>Je suis Kouadio Rodrigue N'GORAN (drigos1er)</h2>
+                        <h3>Je suis un LEAD developpeur PHP/SYMPHONY basé en Côte d'ivoire </h3>
+                        <p>
+                            Je conçois et développe des services et des clients de  toutes tailles, spécialisés dans la création de sites Web modernes et élégants, de services Web et de boutiques en ligne</p>
+                        <p>
+                            Ma passion est de proposer des solutions attractives et innovantes. Découvrez mon <a class="m-btn-link theme-after" href="http://localhost/BLOGOCR/BlogOC/public/files/MonCV.pdf" target="_blank">CV</a></p>
+                        <a class="m-btn m-btn-theme" href="#contact">Me contacter <i class="ti-arrow-right"></i></a>
+                    </div>
+                </div> <!-- col -->
+
+                <div class="col-md-6 text-center sm-m-45px-t">
+                    <img src="http://localhost/BLOGOCR/BlogOC/public/img/monimage.jpg" title="" alt="">
+                </div> <!-- col -->
+
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+    <!-- / -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Contact Start -->
+    <section id="contact" class="section p-0px-b contact-section">
+        <div class="container">
+            <div class="row justify-content-center m-60px-b md-m-40px-b">
+                <div class="col-12 col-md-10 col-lg-7">
+                    <div class="section-title text-center">
+                        <h2 class="font-alt">ME CONTACTER</h2>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-us-box">
+                <div class="row no-gutters">
+                    <div class="col-md-6">
+                        <div class="contact-info-box">
+                            <h2>NOTRE LOCALISATION</h2>
+                            <p class="desc"></p>
+                            <div class="contact-info">
+                                <i class="icon theme-bg ti-direction"></i>
+                                <p>Bd. de Marseille face à Bernabe -<br/> Km 4
+                                    Treichville - <br/>18 BP 1501 Abidjan 18<br/>
+                                    Abidjan - Côte d’Ivoire</p>
+                            </div>
+
+                            <div class="contact-info">
+                                <i class="icon theme-bg ti-email"></i>
+                                <p>drigos1er@yahoo.fr</p>
+                            </div>
+
+                            <div class="contact-info">
+                                <i class="icon theme-bg ti-mobile"></i>
+                                <p>+225 58099212,<br/> +225 05374575</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Contact Form -->
+                        <div class="contact-form">
+                            <h2>Exprimez vous</h2>
+                            <form>
+                                <div class="form-group">
+                                    <input name="Phone" placeholder="Name" class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <input name="Email" placeholder="Emaile" class="form-control" type="email">
+                                </div>
+                                <div class="form-group">
+                                    <input name="Subject" placeholder="Subject" class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="comment" placeholder="Describe your project" rows="3" class="form-control"></textarea>
+                                </div>
+                                <div class="send">
+                                    <button class="m-btn m-btn-theme"><i class="fa fa-envelope-o" aria-hidden="true"></i>Send</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- / -->
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- Container -->
+    </section>
+    <!-- Contact End -->
+
+
+</main>
+<!-- Main End -->
+{% endblock content %}
