@@ -40,4 +40,11 @@ class Session extends IndexController
         $_SESSION['flash']=null;
     }
 
+    // Session Close
+    public static function closeSession()
+    {
+        session_destroy();
+    }
+
+
 }

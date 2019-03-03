@@ -1,7 +1,6 @@
 <?php
 /**
  * Class Users
- * Permet de definir les attributs et methodes des utilisateurs de notre projet
  */
 namespace Blog\Models;
 

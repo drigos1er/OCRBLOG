@@ -1,4 +1,8 @@
 <?php
+/**
+ * Class Errors
+ */
+
 namespace Blog\validation;
 
 use Blog\config\Config;
@@ -10,12 +14,20 @@ class Errors
     private $info;
     private $errors=[];
 
+    /**
+     * Errors constructor.
+     * @param $info
+     */
     public function __construct($info)
     {
         $this->info=$info;
     }
 
-// recuperation de la valeur du champssoumis
+
+
+    /**
+     * @param $field
+     */
     public function getField($field)
     {
 
@@ -26,7 +38,12 @@ class Errors
     }
 
 
-// verification de l'existence de la valeur d'un champs soumis
+    /**
+     * @param $table
+     * @param $chp
+     * @param $field
+     * @param $errorMsg
+     */
     public function isUniq($table, $chp, $field, $errorMsg)
     {
         $rec= new UsersRepository(Config::getCdb());
@@ -38,7 +55,11 @@ class Errors
         }
     }
 
-    // test de la validité de l'email
+
+    /**
+     * @param $field
+     * @param $errorMsg
+     */
     public function isEmail($field, $errorMsg)
     {
 
@@ -47,7 +68,11 @@ class Errors
         }
     }
 
-    // test conformité mot  de passe de confirmation
+
+    /**
+     * @param $field
+     * @param $errorMsg
+     */
     public function isConfirmed($field, $errorMsg)
     {
 
@@ -56,11 +81,17 @@ class Errors
         }
     }
 
+    /**
+     * @return bool
+     */
     public function isValidator()
     {
          return empty($this->errors);
     }
-// Retour de toutes les erreeurs
+
+    /**
+     * @return array
+     */
     public function getErrors()
     {
         return $this->errors;
