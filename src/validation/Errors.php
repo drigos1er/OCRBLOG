@@ -1,6 +1,11 @@
 <?php
+/**
+ * Class Errors
+ */
+
 namespace Blog\validation;
 
+use Blog\config\Config;
 use Blog\repositories\UsersRepository;
 
 class Errors
@@ -9,12 +14,20 @@ class Errors
     private $info;
     private $errors=[];
 
+    /**
+     * Errors constructor.
+     * @param $info
+     */
     public function __construct($info)
     {
         $this->info=$info;
     }
 
 
+
+    /**
+     * @param $field
+     */
     public function getField($field)
     {
 
@@ -25,12 +38,17 @@ class Errors
     }
 
 
-
+    /**
+     * @param $table
+     * @param $chp
+     * @param $field
+     * @param $errorMsg
+     */
     public function isUniq($table, $chp, $field, $errorMsg)
     {
-        $rec= new UsersRepository(\Config::getCdb());
+        $rec= new UsersRepository(Config::getCdb());
 
-        $result=$rec->getUserById($table, $chp, $this->getField($field));
+        $result=$rec->getUserByField($table, $chp, $this->getField($field));
 
         if ($result) {
                 $this->errors[$field]=$errorMsg;
@@ -38,9 +56,10 @@ class Errors
     }
 
 
-
-
-
+    /**
+     * @param $field
+     * @param $errorMsg
+     */
     public function isEmail($field, $errorMsg)
     {
 
@@ -50,6 +69,10 @@ class Errors
     }
 
 
+    /**
+     * @param $field
+     * @param $errorMsg
+     */
     public function isConfirmed($field, $errorMsg)
     {
 
@@ -58,11 +81,17 @@ class Errors
         }
     }
 
+    /**
+     * @return bool
+     */
     public function isValidator()
     {
          return empty($this->errors);
     }
 
+    /**
+     * @return array
+     */
     public function getErrors()
     {
         return $this->errors;
