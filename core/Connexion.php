@@ -1,23 +1,29 @@
 <?php
 namespace Blog\core;
+
 use \PDO;
 
-class Connexion{
-
-
+class Connexion
+{
     private $pdo;
-
-    public function __construct($dbname,$username,$pass,$host='localhost') {
-
-        $this->pdo=new PDO("mysql:dbname=$dbname;host=$host",$username,$pass);
-
+// Connexion à la base de données
+    public function __construct($dbname, $username, $pass, $host = 'localhost')
+    {
+        $this->pdo=new PDO("mysql:dbname=$dbname;host=$host", $username, $pass);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+// Spécification du type de requête en fonction des paramètres
+    public function query($statement, $params = false)
+    {
+        if ($params) {
+            $req=$this->pdo->prepare($statement);
+            $req->execute($params);
+        } else {
+            $req=$this->pdo->query($statement);
+
         }
-
-
-
-
-
+        return $req;
+    }
 }
 
 

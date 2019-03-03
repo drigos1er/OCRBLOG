@@ -1,6 +1,7 @@
 <?php
 namespace Blog\validation;
 
+use Blog\config\Config;
 use Blog\repositories\UsersRepository;
 
 class Errors
@@ -14,7 +15,7 @@ class Errors
         $this->info=$info;
     }
 
-
+// recuperation de la valeur du champssoumis
     public function getField($field)
     {
 
@@ -25,22 +26,19 @@ class Errors
     }
 
 
-
+// verification de l'existence de la valeur d'un champs soumis
     public function isUniq($table, $chp, $field, $errorMsg)
     {
-        $rec= new UsersRepository(\Config::getCdb());
+        $rec= new UsersRepository(Config::getCdb());
 
-        $result=$rec->getUserById($table, $chp, $this->getField($field));
+        $result=$rec->getUserByField($table, $chp, $this->getField($field));
 
         if ($result) {
                 $this->errors[$field]=$errorMsg;
         }
     }
 
-
-
-
-
+    // test de la validité de l'email
     public function isEmail($field, $errorMsg)
     {
 
@@ -49,7 +47,7 @@ class Errors
         }
     }
 
-
+    // test conformité mot  de passe de confirmation
     public function isConfirmed($field, $errorMsg)
     {
 
@@ -62,7 +60,7 @@ class Errors
     {
          return empty($this->errors);
     }
-
+// Retour de toutes les erreeurs
     public function getErrors()
     {
         return $this->errors;
