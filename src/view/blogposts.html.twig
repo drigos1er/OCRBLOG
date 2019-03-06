@@ -43,16 +43,15 @@
 
 
                                 <div class="blog-content">
-                                    <div class="post-meta">
-                                        Mise à jour   <span>{{ l.updatedate }}</span>
-                                    </div><!-- /post-meta -->
 
-                                    <h4><a class="theme-color" href="#">{{ l.title }}</a></h4>
+                                    <h4><span class="theme-color" >{{ l.title }}</span></h4>
+                                    <br>
                                     <p>
-                                        {{ l.chapo }}
-                                    </p>
-                                    <a href="index.php?key=detailspost&&id={{ l.id }}" class="more-btn" style="font-weight: bold; font-style: italic">Voi plus... <i class="ti-arrow-right"></i></a>
+                                     {{ l.chapo }}
+                                    </p> <br>
+                                    <a href="index.php?key=detailspost&&id={{ l.id }}" class="more-btn" style="font-weight: bold; font-style: italic">Voir plus... <i class="ti-arrow-right"></i></a>
 
+                                    <div style="text-align: right; color: orangered"> Dernière mise  à jour  {{ l.updatedate }} par {{ l.updateuser }}</div>
                                 </div>
                             </td></tr>
                     {% endfor %}
