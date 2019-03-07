@@ -24,7 +24,8 @@ class Comments
     private $updateuser;
     /** @var string */
     private $validuser;
-
+    /** @var int */
+    private $postid;
     /**
      * Post constructor.
      * @param array $data
@@ -56,6 +57,17 @@ class Comments
     {
         return $this->id;
     }
+
+
+    /**
+     * @return int
+     */
+    public function getPostid()
+    {
+        return $this->postid;
+    }
+
+
 
 
     /**
@@ -183,6 +195,14 @@ class Comments
     public function setValiduser($validuser)
     {
         $this->validuser = $validuser;
+    }
+
+    /**
+     * @param int $postid
+     */
+    public function setPostid($postid)
+    {
+        $this->postid = $postid;
     }
 
 

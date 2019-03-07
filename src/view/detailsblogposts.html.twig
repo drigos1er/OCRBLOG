@@ -16,7 +16,10 @@
         <div class="container">
 
           <br> <a class="m-btn m-btn-theme" href="index.php?key=blogpost"><i class="ti-arrow-left"></i>Retour à la liste de tous les articles </a>
+            <p> {% if session.flash %}
+            <div class="alert-success"> {{ session.flash }}</div>
 
+            {% endif %}</p>
                 <table id="checklist"  class="table table-striped table-bordered table-condensed">
                     <thead>
                     <tr>
