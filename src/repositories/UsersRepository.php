@@ -5,7 +5,6 @@
 
 namespace Blog\repositories;
 
-use Blog\authentification\StrFunct;
 use Blog\Models\Users;
 use Blog\config\Config;
 

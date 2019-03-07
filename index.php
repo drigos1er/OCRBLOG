@@ -13,6 +13,13 @@ if (isset($_GET['key'])) {
     } elseif ($_GET['key'] == 'logout') {
         $logoff= new \Blog\controller\LoginController();
         $logoff->logout();
+    } elseif ($_GET['key'] == 'detailspost') {
+        $idarticle = intval($_GET['id']);
+        if ($idarticle != 0) {
+            $detailspost = new \Blog\controller\BlogPostController();
+            $detailspost->detailsPost($idarticle);
+
+        }
     }
 } else {
     $index = new Blog\controller\HomeController();

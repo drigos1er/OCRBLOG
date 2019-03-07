@@ -42,6 +42,15 @@ class PostsRepository
 
 
 
+    public function getPostById($id)
+    {
+
+        $stmt = $this->db->query("SELECT * FROM posts WHERE id=?", [$id]);
+
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        return  new Posts($data);
+    }
 
 
 
