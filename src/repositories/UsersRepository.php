@@ -7,6 +7,7 @@ namespace Blog\repositories;
 
 use Blog\authentification\StrFunct;
 use Blog\Models\Users;
+use Blog\config\Config;
 
 class UsersRepository
 {
@@ -14,11 +15,10 @@ class UsersRepository
 
     /**
      * UsersRepository constructor.
-     * @param $db
      */
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db=$db;
+        $this->db=Config::getCdb();
     }
 
 

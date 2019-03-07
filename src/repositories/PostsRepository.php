@@ -6,6 +6,7 @@
 namespace Blog\repositories;
 
 use Blog\Models\Posts;
+use Blog\config\Config;
 
 class PostsRepository
 {
@@ -13,28 +14,28 @@ class PostsRepository
 
     /**
      * PostRepository constructor.
-     * @param $db
      */
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db=$db;
+        $this->db=Config::getCdb();
     }
 
 
-
     /**
-     * @return mixed
+     * @return array
      */
     public function getallPublishPost()
     {
 
+          $posts=[];
+          $stmt = $this->db->query('SELECT * FROM posts where published=1 order by updatedate desc');
+          $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        $stmt = $this->db->query('SELECT * FROM posts where published=1 order by updatedate desc');
-
-        $data = $stmt->fetchAll(
-            \PDO::FETCH_CLASS
-        );
-        return  $data;
+        for ($i=0; $i< count($data); $i++) {
+            $post = new Posts($data[$i]) ;
+            array_push($posts, $post);
+        }
+        return $posts ;
     }
 
 

@@ -38,7 +38,7 @@ class LoginController extends IndexController
 
 
         //validation of the data sent by the user
-            $db=Config::getCdb();
+
             $valid = new validation\Errors($_POST);
         // Email validation
             if ($valid->isValidator()) {
@@ -78,7 +78,7 @@ class LoginController extends IndexController
                 ));
 
 
-                $insertuser=new UsersRepository($db);
+                $insertuser=new UsersRepository();
                 $insertuser->register($userarray);
                 authentification\Session::setFlash('Utilisateur crée avec succès !!');
                 header("Location:index.php?key=register");
@@ -102,7 +102,7 @@ class LoginController extends IndexController
             //Retrieving user-submitted data
             $passlog = htmlspecialchars($_POST['passwd']);
             $usernamelog = htmlspecialchars($_POST['username']);
-            $userlogin = new UsersRepository(Config::getCdb());
+            $userlogin = new UsersRepository();
             $loginus = $userlogin->getUserByUsername($usernamelog);
 
            // username and password validation and profile-based redirection
