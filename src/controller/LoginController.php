@@ -5,9 +5,8 @@
 
 namespace Blog\controller ;
 
-use Blog\config\Config;
 use Blog\Models\Users;
-use Blog\repositories\PostRepository;
+
 use Blog\repositories\UsersRepository;
 use Blog\validation;
 use Blog\authentification;

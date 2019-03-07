@@ -6,9 +6,10 @@ namespace Blog\controller;
 
 use Blog\config\Config;
 
+use Blog\Models\Comments;
 use Blog\repositories\CommentsRepository;
 use Blog\repositories\PostsRepository;
-
+use Blog\authentification;
 class BlogPostController extends IndexController
 {
 
@@ -28,13 +29,8 @@ class BlogPostController extends IndexController
 
     public function detailsPost($id)
     {
-
-
-
-
-
-
-
+        //Clear session information
+        authentification\Session::resetFlash();
 
 
         $post = new PostsRepository();
@@ -43,26 +39,26 @@ class BlogPostController extends IndexController
         $detailscomment=$comment->getallComments($id);
 
 
-
         if (!empty($_POST)) {
-
-
             $contentcom=htmlspecialchars($_POST['content']);
+            $datecreatecom=date('Y-m-d H:i:s');
 
-            $db=\Config::getCdb();
-            $datecreate=date('Y-m-d H:i:s');
-            $insertcomment=new CommentsRepository($db);
-            $insertcomment->addComment($contentcom, $datecreate, $_SESSION['userlog'],$datecreate, $_SESSION['userlog'],$id);
-            $flashmessage= new Session();
-            $flashmessage->setNotification('Commentaire Ajouté avec succès');
-            header("Location:index.php?key=blogpost");
+            $commentarray = new Comments(array(
+                'content' => $contentcom,
+                'createdate' => $datecreatecom,
+                'updatedate' => $datecreatecom,
+                'createuser' => $_SESSION['userlog'],
+                'updateuser' => $_SESSION['userlog'],
+                'postid' => $id
+            ));
+
+
+            $insertcomment=new CommentsRepository();
+            $insertcomment->addComment($commentarray);
+            authentification\Session::setFlash('Commentaire Ajouté avec succès!! Il s\'affichera après validation');
+
+            header("Location:index.php?key=detailspost&&id=$id");
         }
-
-
-
-
-
-
 
         echo $this->twig->render('detailsblogposts.html.twig',array('detailspost'=>$detailspost,'detailscomment'=>$detailscomment));
     }

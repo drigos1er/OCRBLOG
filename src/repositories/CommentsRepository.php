@@ -36,6 +36,13 @@ class CommentsRepository
     }
 
 
+    /**
+     * @param Comments $comments
+     */
+    public function addComment(Comments $comments)
+    {
+        $this->db->query("INSERT INTO comments SET content=?, createdate=?, createuser=?, updatedate=?, updateuser=?, postid=?", [$comments->getContent(), $comments->getCreatedate(), $comments->getCreateuser(),$comments->getUpdatedate(),$comments->getUpdateuser(), $comments->getPostid()]);
+    }
 
 
 
