@@ -20,8 +20,11 @@ class CommentsRepository
     }
 
 
-
-
+    /**
+     * all comments
+     * @param $postid
+     * @return array
+     */
     public function getallComments($postid)
     {
         $comments=[];
@@ -42,6 +45,27 @@ class CommentsRepository
     public function addComment(Comments $comments)
     {
         $this->db->query("INSERT INTO comments SET content=?, createdate=?, createuser=?, updatedate=?, updateuser=?, postid=?", [$comments->getContent(), $comments->getCreatedate(), $comments->getCreateuser(),$comments->getUpdatedate(),$comments->getUpdateuser(), $comments->getPostid()]);
+    }
+
+
+
+
+    public function getCommentsById($id)
+    {
+
+        $stmt = $this->db->query("SELECT * FROM comments WHERE id=?", [$id]);
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        return  new Comments($data);
+    }
+
+
+
+
+
+    public function updComment(Comments $comments)
+    {
+        $this->db->query("UPDATE comments SET content=?, updatedate=?, updateuser=? WHERE id=?", [$comments->getContent(), $comments->getUpdatedate(), $comments->getUpdateuser(), $comments->getId()]);
     }
 
 

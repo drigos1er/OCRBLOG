@@ -46,5 +46,11 @@ class Session extends IndexController
         session_destroy();
     }
 
-
+    public static function getUserlog()
+    {
+        if (!empty($_SESSION)) {
+            $message=$_SESSION ['userlog'];
+            return $message;
+        }
+    }
 }
