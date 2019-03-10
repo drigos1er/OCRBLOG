@@ -12,7 +12,6 @@ use Blog\repositories\PostsRepository;
 use Blog\authentification;
 use Blog\repositories\UsersRepository;
 
-
 class BlogPostController extends IndexController
 {
 
@@ -44,7 +43,16 @@ class BlogPostController extends IndexController
         $detailspost=$post->getPostById($id);
         $comment= new CommentsRepository();
         $detailscomment=$comment->getallComments($id);
+        $userupdate=  new UsersRepository();
+        $upduser=$userupdate->getUserById($detailspost->getUpdateuser());
 
+        $tableuser=array();
+        foreach ($detailscomment as $allcomment) {
+            $usercom= new UsersRepository();
+            $idusercom=$usercom->getUserById($allcomment->getCreateuser());
+            $idusercomname=$idusercom->getUsername();
+            array_push($tableuser, $idusercomname);
+        }
 
 
 
@@ -69,7 +77,8 @@ class BlogPostController extends IndexController
             header("Location:index.php?key=detailspost&&id=$id");
         }
 
-        echo $this->twig->render('detailsblogposts.html.twig',array('detailspost'=>$detailspost,'detailscomment'=>$detailscomment));
+        echo $this->twig->render('detailsblogposts.html.twig', array('detailspost'=>$detailspost,
+            'detailscomment'=>$detailscomment, 'tableuser'=>$tableuser, 'upduser'=>$upduser->getUsername()));
     }
 
 
@@ -113,6 +122,13 @@ class BlogPostController extends IndexController
         echo $this->twig->render('updatecomment.html.twig',array('detailspost'=>$detailspost, 'detailscomment'=>$detailscomment));
     }
 
+    public function deleteComment($idpost, $idcomment)
+    {
+        $delpost=new CommentsRepository();
+        $delpost->deleteComment($idcomment);
 
+        authentification\Session::setFlash('Commentaire supprimé avec succès');
+        header("Location:index.php?key=detailspost&&id=$idpost");
+    }
 
 }

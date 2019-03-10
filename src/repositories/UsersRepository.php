@@ -83,6 +83,6 @@ class UsersRepository
     {
         $password=password_hash($guest->getPasswd(), PASSWORD_BCRYPT);
         $this->db->query("INSERT INTO users SET username=?,  firstname=?,  lastname=?, passwd=?, email=?, contact=?, usertype=?, createdate=?, updatedate=?",
-        [$guest->getUsername(),$guest->getFirstname(), $guest->getLastname(), $password, $guest->getEmail(), $guest->getContact(), $guest->getUsertype(),$guest->getCreatedate(),$guest->getUpdatedate()]);
+        [$guest->getUsername(), $guest->getFirstname(), $guest->getLastname(), $password, $guest->getEmail(), $guest->getContact(), $guest->getUsertype(), $guest->getCreatedate(), $guest->getUpdatedate()]);
     }
 }
