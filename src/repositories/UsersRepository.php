@@ -56,6 +56,25 @@ class UsersRepository
 
 
 
+    /**
+     * @param $id
+     * @return Users
+     */
+    public function getUserById($id)
+    {
+
+        $rec=$this->db->query("SELECT * FROM users WHERE id = ?", [$id]);
+
+
+        $data = $rec->fetch(\PDO::FETCH_ASSOC);
+
+        return  new Users($data);
+    }
+
+
+
+
+
 
     /**
      * @param Users $guest

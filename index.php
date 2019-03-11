@@ -20,7 +20,17 @@ if (isset($_GET['key'])) {
             $detailspost->detailsPost($idarticle);
 
         }
+    } elseif ($_GET['key'] == 'updatecomment') {
+
+        $idpost = intval($_GET['postid']);
+        $idcomment = intval($_GET['commentid']);
+        if ($idcomment != 0 and $idpost != 0) {
+            $upcomment = new \Blog\controller\BlogPostController();
+            $upcomment->updateComment($idpost,$idcomment);
+
+        }
     }
+
 } else {
     $index = new Blog\controller\HomeController();
     $index->home();

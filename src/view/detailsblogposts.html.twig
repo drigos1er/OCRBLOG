@@ -1,6 +1,6 @@
 {% extends "layout.html.twig" %}
 {% block head %}
-    <title>N'GORAN RODRIGUE-Developpeur Web</title>{% endblock %}
+    <title>Détails d'un Article</title>{% endblock %}
 {% block content %}
 <!-- Main Start -->
 <main>
@@ -66,7 +66,7 @@
                         {{ c.content }}
                     </p><br>
 
-                        <div style="text-align: right; color: #0b2e13">  Dernière Mise à jour   {{ c.updatedate|date("d/m/Y") }} par  {{ session.username}} {% if session.username==c.createuser %} <a  href="index.php?key=updatecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}">Modifier </a>  {% endif %} </div>
+                        <div style="text-align: right; color: #0b2e13">  Dernière Mise à jour   {{ c.updatedate|date("d/m/Y") }} par  {{ session.username}} {% if session.userlog==c.createuser %} &nbsp;&nbsp;<a  href="index.php?key=updatecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}"><i class="fa fa-edit text-warning"></i> </a>  &nbsp;&nbsp;&nbsp;<a  href="index.php?key=deletecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}"><i class="fa fa-trash text-danger"></i> </a> {% endif %} </div>
                     </div><!-- /post-meta -->
                     <hr style="color: red;">
                 {% endfor %}      </div> <br>
