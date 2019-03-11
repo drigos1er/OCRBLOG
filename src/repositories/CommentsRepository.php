@@ -69,5 +69,9 @@ class CommentsRepository
     }
 
 
+    public function deleteComment($id)
+    {
+        $this->db->query("DELETE FROM comments  WHERE id=?", [$id]);
+    }
 
 }

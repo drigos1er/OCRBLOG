@@ -2,8 +2,8 @@
 {% block head %}
     <title>Détails d'un Article</title>{% endblock %}
 {% block content %}
-<!-- Main Start -->
-<main>
+    <!-- Main Start -->
+    <main>
 
 
 
@@ -11,15 +11,15 @@
 
 
 
-    <!-- Blog Start -->
-    <section id="blog" class="section blog-section gray-bg">
-        <div class="container">
+        <!-- Blog Start -->
+        <section id="blog" class="section blog-section gray-bg">
+            <div class="container">
 
-          <br> <a class="m-btn m-btn-theme" href="index.php?key=blogpost"><i class="ti-arrow-left"></i>Retour à la liste de tous les articles </a>
-            <p> {% if session.flash %}
-            <div class="alert-success"> {{ session.flash }}</div>
+                <br> <a class="m-btn m-btn-theme" href="index.php?key=blogpost"><i class="ti-arrow-left"></i>Retour à la liste de tous les articles </a>
+                <p> {% if session.flash %}
+                <div class="alert-success"> {{ session.flash }}</div>
 
-            {% endif %}</p>
+                {% endif %}</p>
                 <table id="checklist"  class="table table-striped table-bordered table-condensed">
                     <thead>
                     <tr>
@@ -33,69 +33,78 @@
 
                     <tbody>
 
-                        <tr>
-                            <td>
+                    <tr>
+                        <td>
 
 
-                                <div class="blog-content">
-                                    <h4><span class="theme-color" >{{  detailspost.title  }}</span></h4>
-                                    <br>
+                            <div class="blog-content">
+                                <h4><span class="theme-color" >{{  detailspost.title  }}</span></h4>
+                                <br>
 
 
-                                    <h4><a class="theme-color" href="#"></a></h4>
-                                    <p>
-                                        {{ detailspost.chapo }}
-                                    </p>
+                                <h4><a class="theme-color" href="#"></a></h4>
+                                <p>
+                                    {{ detailspost.chapo }}
+                                </p>
 
-                                    <p>
-                                        {{ detailspost.content}}
-                                    </p>
-                                    <div style="text-align: right; color: orangered"> Dernière mise  à jour  {{ detailspost.updatedate|date("d/m/Y") }} par {{ detailspost.updateuser }}</div>
-                                </div>
+                                <p>
+                                    {{ detailspost.content}}
+                                </p>
+                                <div style="text-align: right; color: orangered"> Dernière mise  à jour  {{ detailspost.updatedate|date("d/m/Y") }} par {{ upduser }}</div>
+                            </div>
 
-                            </td></tr>
+                        </td></tr>
 
 
 
 
                     </tbody>
                 </table>
-            <div> {% for c in detailscomment %}
+                <div>   {% set k = 0 %}
+                    {% for c in detailscomment %}
 
-                    <div style="background-color: white">   <p >
-                        {{ c.content }}
-                    </p><br>
+                        <div style="background-color: white">   <p >
+                                {{ c.content }}
+                            </p><br>
 
-                        <div style="text-align: right; color: #0b2e13">  Dernière Mise à jour   {{ c.updatedate|date("d/m/Y") }} par  {{ session.username}} {% if session.userlog==c.createuser %} &nbsp;&nbsp;<a  href="index.php?key=updatecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}"><i class="fa fa-edit text-warning"></i> </a>  &nbsp;&nbsp;&nbsp;<a  href="index.php?key=deletecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}"><i class="fa fa-trash text-danger"></i> </a> {% endif %} </div>
-                    </div><!-- /post-meta -->
-                    <hr style="color: red;">
-                {% endfor %}      </div> <br>
-            <div>  <form method="post" action="">
+                            <div style="text-align: right; color: #0b2e13">  Dernière Mise à jour   {{ c.updatedate|date("d/m/Y") }} par  {{ tableuser[k]}}  {% if session.userlog==c.createuser %} &nbsp;&nbsp;<a  href="index.php?key=updatecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}"><i class="fa fa-edit text-warning"></i> </a>  &nbsp;&nbsp;&nbsp;<a  href="index.php?key=deletecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}"><i class="fa fa-trash text-danger"></i> </a> {% endif %} </div>
+                        </div><!-- /post-meta -->
+                        <hr style="color: red;">
+
+                        {% set k = k + 1 %}
+                    {% endfor %}     </div> <br>
+
+                <div>
+
+                    {% if session.username %}
+                        <form method="post" action="">
 
 
-                    <div class="form-group">
-                        <textarea name="content" placeholder="Ajouter un Commentaire" rows="3" class="form-control" required></textarea>
-                    </div>
+                            <div class="form-group">
+                                <textarea name="content" placeholder="Ajouter un Commentaire" rows="3" class="form-control" required></textarea>
+                            </div>
+                            <div class="send">
+                                <button class="m-btn m-btn-theme" type="submit"><i class="fa fa-envelope-o" aria-hidden="true"></i>Enregistrer</button>
+                            </div>
 
-                    <div class="send">
-                        <button class="m-btn m-btn-theme" type="submit"><i class="fa fa-envelope-o" aria-hidden="true"></i>Enregistrer</button>
-                    </div>
 
-                </form>
+                        </form>
+                    {% endif %}
+
+                    {% if session.username==null %}<a class="m-btn m-btn-theme" href="index.php?key=register">AJOUTER UN COMMENTAIRE <i class="ti-arrow-right"></i></a>{% endif %}
+                </div>
+
+
 
             </div>
-
-
-
-            </div>
-        </div> <!-- container --><br><br><br><br>
-    </section>
-    <!-- Blog End -->
+            </div> <!-- container --><br><br><br><br>
+        </section>
+        <!-- Blog End -->
 
 
 
 
 
-</main>
-<!-- Main End -->
+    </main>
+    <!-- Main End -->
 {% endblock content %}

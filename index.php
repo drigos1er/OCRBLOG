@@ -21,12 +21,18 @@ if (isset($_GET['key'])) {
 
         }
     } elseif ($_GET['key'] == 'updatecomment') {
-
         $idpost = intval($_GET['postid']);
         $idcomment = intval($_GET['commentid']);
         if ($idcomment != 0 and $idpost != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
-            $upcomment->updateComment($idpost,$idcomment);
+            $upcomment->updateComment($idpost, $idcomment);
+        }
+    } elseif ($_GET['key'] == 'deletecomment') {
+        $idpost = intval($_GET['postid']);
+        $idcomment = intval($_GET['commentid']);
+        if ($idcomment != 0 and $idpost != 0) {
+            $upcomment = new \Blog\controller\BlogPostController();
+            $upcomment->deleteComment($idpost, $idcomment);
 
         }
     }
