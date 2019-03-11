@@ -75,9 +75,26 @@ class PostsRepository
     }
 
 
+    /**
+     * @param Posts $posts
+     */
     public function addPost(Posts $posts)
     {
         $this->db->query("INSERT INTO posts SET title=?, chapo=?, content=?, createdate=?, createuser=?, updatedate=?, updateuser=?", [$posts->getTitle(), $posts->getChapo(),
             $posts->getContent(), $posts->getCreatedate(), $posts->getCreateuser(), $posts->getUpdatedate(), $posts->getUpdateuser()]);
     }
+
+
+    /**
+     * @param Posts $posts
+     */
+    public function updatePost(Posts $posts)
+    {
+        $this->db->query("UPDATE posts SET title=?, chapo=?, content=?, updatedate=?, updateuser=? WHERE id=?", [$posts->getTitle(), $posts->getChapo(),
+            $posts->getContent(), $posts->getUpdatedate(), $posts->getUpdateuser(), $posts->getId()]);
+    }
+
+
+
+
 }

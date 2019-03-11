@@ -24,7 +24,6 @@ if (isset($_GET['key'])) {
         if ($idarticle != 0) {
             $detailspost = new \Blog\controller\BlogPostController();
             $detailspost->detailsPost($idarticle);
-
         }
     } elseif ($_GET['key'] == 'updatecomment') {
         $idpost = intval($_GET['postid']);
@@ -39,6 +38,13 @@ if (isset($_GET['key'])) {
         if ($idcomment != 0 and $idpost != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
             $upcomment->deleteComment($idpost, $idcomment);
+
+        }
+    } elseif ($_GET['key'] == 'updatepost') {
+        $idarticle = intval($_GET['id']);
+        if ($idarticle != 0) {
+            $updatpost = new \Blog\controller\BlogPostController();
+            $updatpost->updatePost($idarticle);
 
         }
     }
