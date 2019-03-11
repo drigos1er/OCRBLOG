@@ -108,7 +108,8 @@ class LoginController extends IndexController
 
             if (password_verify($passlog, $loginus->getPasswd())) {
                 if ($loginus->getUsertype() == 'administrateur') {
-                    authentification\Session::setUserlog($usernamelog);
+                    authentification\Session::setUserlog($loginus->getId());
+                    authentification\Session::setUsername($usernamelog);
                     header("Location:index.php?key=blogadmin");
                 } else {
                     authentification\Session::setUserlog($loginus->getId());

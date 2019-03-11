@@ -1,0 +1,115 @@
+{% extends "layout.html.twig" %}
+{% block head %}
+    <title>N'GORAN RODRIGUE-Developpeur Web</title>{% endblock %}
+{% block content %}
+    <!-- Main Start -->
+    <main>
+
+
+
+
+
+        <!-- Service Start -->
+        <section id="services" class="section gray-bg services-section">
+
+
+            <div class="container">
+                <p> {% if session.flash %}
+                <div class="alert-success" style="text-align: center"> {{ session.flash }}</div>
+
+                {% endif %}</p>
+                <div class="row justify-content-center m-45px-b md-m-30px-b sm-m-25px-b">
+                    <div class="col-12 col-md-10 col-lg-7">
+                        <div class="section-title text-center">
+                            <div class="col-md-6">
+
+                                <div class="about-left">
+
+                                    <a class="m-btn m-btn-theme" href="index.php?key=addpost">Ajouter un Article <i class="ti-arrow-right"></i></a>
+                                </div>
+                            </div> <!-- col -->
+
+
+                        </div>
+                    </div>
+                </div> <!-- row -->
+
+                <div class="row">
+
+                    <table  class="table table-striped table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>NOS ARTICLES</th>
+
+
+
+                        </tr>
+                        </thead>
+
+
+                        <tbody>
+                        {% set k = 0 %}
+                          {% for l in listpost %}
+                          <tr>
+                          <td>
+
+
+
+                                             <div class="post-meta">
+                                                 Mise à jour   <span>{{ l.updatedate }}</span>
+                                             </div><!-- /post-meta -->
+
+                                             <h4><a class="theme-color" href="#">{{ l.title }}</a></h4>
+                                             <p>
+                                                 {{ l.chapo }}
+                                             </p>
+                                             <a href="index.php?id={{ l.id }}" class="more-btn" style="font-weight: bold; font-style: italic">Voi plus... <i class="ti-arrow-right"></i></a>
+
+                              <div style="text-align: right; color: orangered"> Dernière mise  à jour  {{ l.updatedate|date("d/m/Y") }} par {{ tableuserpost[k]}}</div>
+                          </td>
+
+
+                              <td>
+
+
+                                 <a href="index.php?key=updatepost&&id={{ l.id }}" style="font-weight: bold; font-style: italic"> <i class="fa fa-edit text-warning"></i></a>
+
+
+                              </td>
+
+
+                              <td>
+
+                                  <a href="index.php?key=deletepost&&id={{ l.id }}"  style="font-weight: bold; font-style: italic"><i class="fa fa-trash text-danger"></i></a>
+
+
+                              </td>
+
+                              <td>
+
+
+                               <a href="index.php?key=publishpost&&id={{ l.id }}"  style="font-weight: bold; font-style: italic"><i class="fa fa-check-circle text-success"></i> </a>
+
+
+                              </td>
+
+
+                          </tr>{% set k = k + 1 %}
+                             {% endfor %}
+                        </tbody>
+                    </table>
+
+
+
+
+
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </section>
+        <!-- Service End -->
+
+
+
+    </main>
+    <!-- Main End -->
+{% endblock content %}

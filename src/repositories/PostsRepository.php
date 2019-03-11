@@ -39,9 +39,31 @@ class PostsRepository
     }
 
 
+    /**
+     * @return array
+     */
+    public function getallPost()
+    {
+        $posts=[];
+
+        $stmt = $this->db->query('SELECT * FROM posts   order by updatedate desc');
+        $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        for ($i=0; $i< count($data); $i++) {
+            $post = new Posts($data[$i]) ;
+            array_push($posts, $post);
+        }
+        return $posts ;
+    }
 
 
 
+
+
+    /**
+     * @param $id
+     * @return Posts
+     */
     public function getPostById($id)
     {
 
@@ -53,5 +75,9 @@ class PostsRepository
     }
 
 
-
+    public function addPost(Posts $posts)
+    {
+        $this->db->query("INSERT INTO posts SET title=?, chapo=?, content=?, createdate=?, createuser=?, updatedate=?, updateuser=?", [$posts->getTitle(), $posts->getChapo(),
+            $posts->getContent(), $posts->getCreatedate(), $posts->getCreateuser(), $posts->getUpdatedate(), $posts->getUpdateuser()]);
+    }
 }
