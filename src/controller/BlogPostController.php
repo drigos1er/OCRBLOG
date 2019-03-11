@@ -7,6 +7,7 @@ namespace Blog\controller;
 use Blog\config\Config;
 
 use Blog\Models\Comments;
+use Blog\Models\Posts;
 use Blog\repositories\CommentsRepository;
 use Blog\repositories\PostsRepository;
 use Blog\authentification;
@@ -113,15 +114,14 @@ class BlogPostController extends IndexController
              header("Location:index.php?key=detailspost&&id=$postid");
         }
 
-
-
-
-
-
-
-        echo $this->twig->render('updatecomment.html.twig',array('detailspost'=>$detailspost, 'detailscomment'=>$detailscomment));
+        echo $this->twig->render('updatecomment.html.twig', array('detailspost'=>$detailspost, 'detailscomment'=>$detailscomment));
     }
 
+    /**
+     * delete comment
+     * @param $idpost
+     * @param $idcomment
+     */
     public function deleteComment($idpost, $idcomment)
     {
         $delpost=new CommentsRepository();
@@ -129,6 +129,63 @@ class BlogPostController extends IndexController
 
         authentification\Session::setFlash('Commentaire supprimé avec succès');
         header("Location:index.php?key=detailspost&&id=$idpost");
+    }
+
+    /**
+     * List post espace admin
+     */
+    public function blogAdmin()
+    {
+        $post = new PostsRepository();
+        $listpost=$post->getallPost();
+
+
+        $tableuserpost=array();
+        foreach ($listpost as $allpost) {
+            $userpost= new UsersRepository();
+
+
+            $iduserpost=$userpost->getUserById($allpost->getCreateuser());
+
+
+            $iduserpostname=$iduserpost->getUsername();
+            array_push($tableuserpost, $iduserpostname);
+        }
+
+        echo $this->twig->render('blogadmin.html.twig', array('listpost'=>$listpost,'tableuserpost'=>$tableuserpost));
+    }
+
+    /**
+     * create Post Blog
+     */
+    public function addPost()
+    {
+        if (!empty($_POST)) {
+            $titlesec=htmlspecialchars($_POST['title']);
+            $chaposec=htmlspecialchars($_POST['chapo']);
+            $contentsec=htmlspecialchars($_POST['content']);
+            $iduserpost=authentification\Session::getUserlog();
+
+            $datecreate=date('Y-m-d H:i:s');
+            $postarray = new Posts(array(
+                'title' => $titlesec,
+                'chapo' => $chaposec,
+                'content' => $contentsec,
+                'createdate' => $datecreate,
+                'createuser' => $iduserpost,
+                'updatedate' => $datecreate,
+                'updateuser' => $iduserpost
+            ));
+
+
+            $insertpost=new PostsRepository();
+            $insertpost->addPost($postarray);
+            authentification\Session::setFlash('Article Ajouté avec succès!!');
+
+            header("Location:index.php?key=blogadmin");
+        }
+
+        echo $this->twig->render('addpost.html.twig');
     }
 
 }

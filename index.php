@@ -10,9 +10,15 @@ if (isset($_GET['key'])) {
     } elseif ($_GET['key'] == 'blogpost') {
         $listposts= new \Blog\controller\BlogPostController();
         $listposts->listPost();
+    } elseif ($_GET['key'] == 'addpost') {
+        $addpost= new \Blog\controller\BlogPostController();
+        $addpost->addPost();
     } elseif ($_GET['key'] == 'logout') {
         $logoff= new \Blog\controller\LoginController();
         $logoff->logout();
+    } elseif ($_GET['key'] == 'blogadmin') {
+        $blogadmin= new \Blog\controller\BlogPostController();
+        $blogadmin->blogAdmin();
     } elseif ($_GET['key'] == 'detailspost') {
         $idarticle = intval($_GET['id']);
         if ($idarticle != 0) {
