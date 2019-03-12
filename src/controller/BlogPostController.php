@@ -233,4 +233,19 @@ class BlogPostController extends IndexController
     }
 
 
+    /**
+     * Delete Post
+     * @param $id
+     */
+    public function deletePost($id)
+    {
+        $delpost=new PostsRepository();
+        $delpost->deletePost($id);
+        authentification\Session::setFlash('Article supprimé avec succès!!');
+        header("Location:index.php?key=blogadmin");
+    }
+
+
+
+
 }

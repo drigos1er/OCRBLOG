@@ -47,6 +47,13 @@ if (isset($_GET['key'])) {
             $updatpost->updatePost($idarticle);
 
         }
+    } elseif ($_GET['key'] == 'deletepost') {
+        $idarticle = intval($_GET['id']);
+        if ($idarticle != 0) {
+            $deletepost = new \Blog\controller\BlogPostController();
+            $deletepost->deletePost($idarticle);
+
+        }
     }
 
 } else {
