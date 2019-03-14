@@ -13,6 +13,9 @@ if (isset($_GET['key'])) {
     } elseif ($_GET['key'] == 'addpost') {
         $addpost= new \Blog\controller\BlogPostController();
         $addpost->addPost();
+    } elseif ($_GET['key'] == 'formcontact') {
+        $contact= new \Blog\controller\FormContactController();
+        $contact->sendmail();
     } elseif ($_GET['key'] == 'logout') {
         $logoff= new \Blog\controller\LoginController();
         $logoff->logout();

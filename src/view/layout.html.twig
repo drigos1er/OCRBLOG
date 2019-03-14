@@ -68,7 +68,7 @@
 
                     {% if session.typeuser != "administrateur" %} <li><a class="nav-link" href="index.php?key=blogpost"> NOS ARTICLES </a></li>{% endif %}
 
-                    <li><a class="nav-link" href="#contact">CONTACTEZ NOUS </a></li>
+                    <li><a class="nav-link" href="index.php?key=formcontact">CONTACTEZ NOUS </a></li>
                     {% if session.username==null %}<li><a class="nav-link" href="index.php?key=register">CONNECTEZ VOUS</a></li>{% endif %}
 
                     {% if session.username %} <li><a class="nav-link" href="index.php?key=profil">MON PROFIL(<span style="color: #00c6ff; font-weight: bold" >{{ session.username }}</span>)</a></li>{% endif %}
