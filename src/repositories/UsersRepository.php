@@ -85,4 +85,17 @@ class UsersRepository
         $this->db->query("INSERT INTO users SET username=?,  firstname=?,  lastname=?, passwd=?, email=?, contact=?, usertype=?, createdate=?, updatedate=?",
         [$guest->getUsername(), $guest->getFirstname(), $guest->getLastname(), $password, $guest->getEmail(), $guest->getContact(), $guest->getUsertype(), $guest->getCreatedate(), $guest->getUpdatedate()]);
     }
+
+
+    /**
+     * @param Users $guest
+     */
+    public function editprofil(Users $guest)
+    {
+
+        $this->db->query("UPDATE users SET username=?,  firstname=?,  lastname=?, email=?, contact=?, updatedate=?",
+            [$guest->getUsername(), $guest->getFirstname(), $guest->getLastname(), $guest->getEmail(), $guest->getContact(), $guest->getUpdatedate()]);
+    }
+
+
 }

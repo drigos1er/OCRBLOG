@@ -126,10 +126,83 @@ class LoginController extends IndexController
         }
     }
 
+    /**
+     *Logout
+     */
     public function logout()
     {
         authentification\Session::closeSession();
         header("Location:index.php");
     }
+
+
+    /**
+     *  http_method=post
+     * Edit Profil
+     */
+    public function editprofil($id)
+    {
+        $puser = new UsersRepository();
+        $userprofil=$puser->getUserById($id);
+        //Clear session information
+        authentification\Session::resetFlash();
+
+        if (!empty($_POST)) {
+            //Retrieving user-submitted data
+
+            $usernameupus=htmlspecialchars($_POST['username']);
+            $firstnameupus=htmlspecialchars($_POST['firstname']);
+            $lastnameupus=htmlspecialchars($_POST['lastname']);
+            $emailupus=htmlspecialchars($_POST['email']);
+            $contactupus=htmlspecialchars($_POST['contact']);
+            $dateupus=new \Datetime();
+            $dateupduser=$dateupus->format('Y-m-d H:i:s');
+
+
+            //validation of the data sent by the user
+
+            $valid = new validation\Errors($_POST);
+            // Email validation
+            if ($valid->isValidator()) {
+                $valid->isEmail('email', 'Cet email n\'est pas valide');
+                authentification\Session::setFlash('Cet email n\'est pas valide');
+                header("Location:index.php?key=profil&&id=$id");
+            }
+
+            //username availability
+            if ($valid->isValidator()) {
+                $valid->isUniq('users', 'username', 'username', 'Ce Pseudo est dejà utilisé par un autre utilisateur');
+                authentification\Session::setFlash('Ce Pseudo est dejà utilisé par un autre utilisateur');
+                header("Location:index.php?key=profil&&id=$id");
+            }
+            //email availability
+            if ($valid->isValidator()) {
+                $valid->isUniq('users', 'email', 'email', 'Cet Email  est dejà utilisé par un autre utilisateur');
+                authentification\Session::setFlash(' Email  dejà utilisé par utilisateur');
+                header("Location:index.php?key=profil&&id=$id");
+            }
+            if ($valid->isValidator()) {
+                $userupdarray = new Users(array(
+                    'username' => $usernameupus,
+                    'firstname' => $firstnameupus,
+                    'lastname' => $lastnameupus,
+
+                    'email' => $emailupus,
+                    'contact' => $contactupus,
+
+
+                    'updatedate' => $dateupduser,
+                ));
+
+
+                $updateuser=new UsersRepository();
+                $updateuser->editprofil($userupdarray);
+                authentification\Session::setFlash('Profil Modifié avec succès !!');
+                header("Location:index.php?key=profil&&id=$id");
+            }
+        }
+        echo $this->twig->render('editprofile.html.twig', array('userprofil'=>$userprofil));
+    }
+
 
 }

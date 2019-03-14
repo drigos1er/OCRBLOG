@@ -1,0 +1,88 @@
+{% extends "layout.html.twig" %}
+
+
+{% block head %}
+    <title>MON PROFILE</title>{% endblock %}
+
+
+{% block content %}
+    <main>
+
+
+
+
+
+
+
+
+        <!-- Contact Start -->
+        <section id="contact" class="section p-0px-b contact-section">
+            <div class="container">
+                <div class="row justify-content-center m-60px-b md-m-40px-b">
+                    <div class="col-12 col-md-10 col-lg-7">
+                        <div class="section-title text-center">
+                            <h2 class="font-alt">VOTRE ESPACE
+                                </h2>
+
+                            <p> {% if session.flash %}
+                            <div class="alert-danger"> {{ session.flash }}</div>
+
+                            {% endif %}</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-us-box">
+                     <div class="row no-gutters">
+
+                     <div class="col-md-6 ">
+
+
+
+                            <!-- Contact Form-->
+                            <div class="contact-form">
+
+
+
+                                <form method="post" action="">
+
+                                    <div class="form-group">
+                                        <input name="username" placeholder="Nom d'utilisateur" class="form-control" type="text" required value="{{ userprofil.username }}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input name="firstname" placeholder="Nom" class="form-control" type="text" required value="{{ userprofil.firstname }}">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <input name="lastname" placeholder="Prénoms" class="form-control" type="text" required value="{{ userprofil.lastname }}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input name="email" placeholder="Email" class="form-control" type="text" required value="{{ userprofil.email}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="contact" placeholder="Contact" class="form-control" type="text" required value="{{ userprofil.contact }}">
+                                    </div>
+
+
+                                    <div class="send">
+                                        <button class="m-btn m-btn-theme" type="submit"><i class="fa fa-envelope-o" aria-hidden="true"></i>Modifer</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- / -->
+                        </div>
+
+                    </div>
+                </div>
+            </div> <!-- Container -->
+        </section>
+        <!-- Contact End -->
+
+
+    </main>
+    <!-- Main End -->
+{% endblock content %}
