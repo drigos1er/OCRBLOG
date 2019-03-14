@@ -72,28 +72,34 @@
                               <td>
 
 
-                                  {% if session.userlog==l.createuser %}  <a href="index.php?key=updatepost&&id={{ l.id }}" style="font-weight: bold; font-style: italic"> <i class="fa fa-edit text-warning"></i></a> {% endif %}
+                                  {% if session.userlog==l.createuser %}  <a href="index.php?key=updatepost&&id={{ l.id }}" style="font-weight: bold; font-style: italic" title="Modifier"> <i class="fa fa-edit text-warning"></i></a> {% endif %}
 
 
                               </td>
+
 
 
                               <td>
 
-                                      {% if session.userlog==l.createuser %}   <a href="index.php?key=deletepost&&id={{ l.id }}"  style="font-weight: bold; font-style: italic"><i class="fa fa-trash text-danger"></i></a> {% endif %}
+
+                                          {% if session.userlog==l.createuser  and  l.published == 1%}    <a href="index.php?key=unpublishpost&&id={{ l.id }}"  style="font-weight: bold; font-style: italic" title="Annuler la Publication"><i class="fa fa-check-circle text-danger"></i> </a> {% endif %}
+
+
+                                  {% if session.userlog==l.createuser  and  l.published != 1%}    <a href="index.php?key=publishpost&&id={{ l.id }}"  style="font-weight: bold; font-style: italic" title="Publier"><i class="fa fa-check-circle text-success"></i> </a> {% endif %}
 
 
                               </td>
+
+
+
+
 
                               <td>
 
-
-                                          {% if session.userlog==l.createuser %}  <a href="index.php?key=publishpost&&id={{ l.id }}"  style="font-weight: bold; font-style: italic"><i class="fa fa-check-circle text-success"></i> </a> {% endif %}
+                                  {% if session.userlog==l.createuser %}   <a href="index.php?key=deletepost&&id={{ l.id }}"  style="font-weight: bold; font-style: italic" title="Supprimer"><i class="fa fa-trash text-danger"></i></a> {% endif %}
 
 
                               </td>
-
-
                           </tr>{% set k = k + 1 %}
                              {% endfor %}
                         </tbody>

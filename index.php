@@ -54,6 +54,20 @@ if (isset($_GET['key'])) {
             $deletepost->deletePost($idarticle);
 
         }
+    } elseif ($_GET['key'] == 'publishpost') {
+        $idarticle = intval($_GET['id']);
+        if ($idarticle != 0) {
+            $publishpost = new \Blog\controller\BlogPostController();
+            $publishpost->publishPost($idarticle);
+
+        }
+    } elseif ($_GET['key'] == 'unpublishpost') {
+        $idarticle = intval($_GET['id']);
+        if ($idarticle != 0) {
+            $publishpost = new \Blog\controller\BlogPostController();
+            $publishpost->unpublishPost($idarticle);
+
+        }
     } elseif ($_GET['key'] == 'detailspostadmin') {
         $idarticle = intval($_GET['id']);
         if ($idarticle != 0) {
@@ -81,7 +95,7 @@ if (isset($_GET['key'])) {
         $idcomment = intval($_GET['commentid']);
         if ($idcomment != 0 and $idpost != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
-            $upcomment->deleteComment($idpost, $idcomment);
+            $upcomment->deleteCommentadmin($idpost, $idcomment);
 
         }
     }

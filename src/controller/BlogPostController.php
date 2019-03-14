@@ -324,5 +324,43 @@ class BlogPostController extends IndexController
     }
 
 
+    /**
+     * delete comment admin
+     * @param $idpost
+     * @param $idcomment
+     */
+    public function deleteCommentadmin($idpost, $idcomment)
+    {
+        $delpost=new CommentsRepository();
+        $delpost->deleteComment($idcomment);
+
+        authentification\Session::setFlash('Commentaire supprimé avec succès');
+        header("Location:index.php?key=detailspostadmin&&id=$idpost");
+    }
+
+
+    /**
+     * Publish Post
+     * @param $id
+     */
+    public function publishPost($id)
+    {
+        $delpost=new PostsRepository();
+        $delpost->publishPost($id);
+        authentification\Session::setFlash('Article publié avec succès!!');
+        header("Location:index.php?key=blogadmin");
+    }
+
+    /**
+     * unPublish  Post
+     * @param $id
+     */
+    public function unpublishPost($id)
+    {
+        $delpost=new PostsRepository();
+        $delpost->unpublishPost($id);
+        authentification\Session::setFlash('Annulation publication de l\'article efv(fv(ectué avec succès!!');
+        header("Location:index.php?key=blogadmin");
+    }
 
 }

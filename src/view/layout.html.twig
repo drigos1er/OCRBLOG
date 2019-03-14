@@ -63,8 +63,10 @@
                     <li><a class="nav-link active" href="index.php">ACCUEIL</a></li>
 
 
-                    <li><a class="nav-link" href="index.php?key=blogpost"> NOS ARTICLES </a></li>
+                    {% if session.typeuser=="administrateur" %} <li><a class="nav-link" href="index.php?key=blogadmin"> NOS ARTICLES </a></li>{% endif %}
 
+
+                    {% if session.typeuser != "administrateur" %} <li><a class="nav-link" href="index.php?key=blogpost"> NOS ARTICLES </a></li>{% endif %}
 
                     <li><a class="nav-link" href="#contact">CONTACTEZ NOUS </a></li>
                     {% if session.username==null %}<li><a class="nav-link" href="index.php?key=register">CONNECTEZ VOUS</a></li>{% endif %}

@@ -110,10 +110,12 @@ class LoginController extends IndexController
                 if ($loginus->getUsertype() == 'administrateur') {
                     authentification\Session::setUserlog($loginus->getId());
                     authentification\Session::setUsername($usernamelog);
+                    authentification\Session::setTypeuser($loginus->getUsertype());
                     header("Location:index.php?key=blogadmin");
                 } else {
                     authentification\Session::setUserlog($loginus->getId());
                     authentification\Session::setUsername($usernamelog);
+                    authentification\Session::setTypeuser($loginus->getUsertype());
                     header("Location:index.php?key=blogpost");
                 }
             } else {
