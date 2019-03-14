@@ -246,6 +246,83 @@ class BlogPostController extends IndexController
     }
 
 
+    public function detailsPostadmin($id)
+    {
+        //Clear session information
+        authentification\Session::resetFlash();
+
+
+        $post = new PostsRepository();
+        $detailspost=$post->getPostById($id);
+        $comment= new CommentsRepository();
+        $detailscomment=$comment->getallCommentsadmin($id);
+        $userupdate=  new UsersRepository();
+        $upduser=$userupdate->getUserById($detailspost->getUpdateuser());
+
+        $tableuser=array();
+        foreach ($detailscomment as $allcomment) {
+            $usercom= new UsersRepository();
+            $idusercom=$usercom->getUserById($allcomment->getCreateuser());
+            $idusercomname=$idusercom->getUsername();
+            array_push($tableuser, $idusercomname);
+        }
+
+
+
+        if (!empty($_POST)) {
+            $contentcom=htmlspecialchars($_POST['content']);
+            $datecreatecom=date('Y-m-d H:i:s');
+            $iduserlog=authentification\Session::getUserlog();
+            $commentarray = new Comments(array(
+                'content' => $contentcom,
+                'createdate' => $datecreatecom,
+                'updatedate' => $datecreatecom,
+                'createuser' => $iduserlog,
+                'updateuser' => $iduserlog,
+                'postid' => $id
+            ));
+
+
+            $insertcomment=new CommentsRepository();
+            $insertcomment->addComment($commentarray);
+            authentification\Session::setFlash('Commentaire Ajouté avec succès!! Il s\'affichera après validation');
+
+            header("Location:index.php?key=detailspost&&id=$id");
+        }
+
+        echo $this->twig->render('detailsblogpostsadmin.html.twig', array('detailspost'=>$detailspost,
+            'detailscomment'=>$detailscomment, 'tableuser'=>$tableuser, 'upduser'=>$upduser->getUsername()));
+    }
+
+    /**
+     * valid comment
+     * @param $idpost
+     * @param $idcomment
+     */
+    public function validComment($idpost, $idcomment)
+    {
+        $delpost=new CommentsRepository();
+        $delpost->validComment($idcomment);
+
+        authentification\Session::setFlash('Commentaire validé avec succès !!');
+        header("Location:index.php?key=detailspostadmin&&id=$idpost");
+    }
+
+
+    /**
+     * unvalid comment
+     * @param $idpost
+     * @param $idcomment
+     */
+    public function unvalidComment($idpost, $idcomment)
+    {
+        $delpost=new CommentsRepository();
+        $delpost->unvalidComment($idcomment);
+
+        authentification\Session::setFlash('Annulation validation commentaire effectué avec succès !!');
+        header("Location:index.php?key=detailspostadmin&&id=$idpost");
+    }
+
 
 
 }

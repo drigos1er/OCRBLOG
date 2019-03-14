@@ -39,6 +39,28 @@ class CommentsRepository
     }
 
 
+
+    /**
+     * all comments
+     * @param $postid
+     * @return array
+     */
+    public function getallCommentsadmin($postid)
+    {
+        $comments=[];
+        $stmt = $this->db->query("SELECT * FROM comments where postid=?   order by updatedate desc", [$postid]);
+        $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        for ($i=0; $i< count($data); $i++) {
+            $comment = new Comments($data[$i]) ;
+            array_push($comments, $comment);
+        }
+        return $comments ;
+    }
+
+
+
+
     /**
      * @param Comments $comments
      */
@@ -48,8 +70,10 @@ class CommentsRepository
     }
 
 
-
-
+    /**
+     * @param $id
+     * @return Comments
+     */
     public function getCommentsById($id)
     {
 
@@ -60,24 +84,40 @@ class CommentsRepository
     }
 
 
-
-
-
+    /**
+     * @param Comments $comments
+     */
     public function updComment(Comments $comments)
     {
         $this->db->query("UPDATE comments SET content=?, updatedate=?, updateuser=? WHERE id=?", [$comments->getContent(), $comments->getUpdatedate(), $comments->getUpdateuser(), $comments->getId()]);
     }
 
 
+    /**
+     * @param $id
+     */
     public function deleteComment($id)
     {
         $this->db->query("DELETE FROM comments  WHERE id=?", [$id]);
     }
 
 
+    /**
+     * @param $id
+     */
+    public function validComment($id)
+    {
+        $this->db->query("UPDATE Comments SET valid=1 WHERE id=?", [$id]);
+    }
 
 
-
+    /**
+     * @param $id
+     */
+    public function unvalidComment($id)
+    {
+        $this->db->query("UPDATE Comments SET valid=0 WHERE id=?", [$id]);
+    }
 
 
 }
