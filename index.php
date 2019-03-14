@@ -22,6 +22,12 @@ if (isset($_GET['key'])) {
     } elseif ($_GET['key'] == 'blogadmin') {
         $blogadmin= new \Blog\controller\BlogPostController();
         $blogadmin->blogAdmin();
+    } elseif ($_GET['key'] == 'profil') {
+        $iduser = intval($_GET['id']);
+        if ($iduser != 0) {
+            $contact= new \Blog\controller\LoginController();
+            $contact->editprofil($iduser);
+        }
     } elseif ($_GET['key'] == 'detailspost') {
         $idarticle = intval($_GET['id']);
         if ($idarticle != 0) {
