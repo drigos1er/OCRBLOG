@@ -136,6 +136,9 @@ class BlogPostController extends IndexController
      */
     public function blogAdmin()
     {
+        //Clear session information
+        authentification\Session::resetFlash();
+
         $post = new PostsRepository();
         $listpost=$post->getallPost();
 
@@ -187,5 +190,47 @@ class BlogPostController extends IndexController
 
         echo $this->twig->render('addpost.html.twig');
     }
+
+
+    /**
+     * update post
+     * @param $id
+     */
+    public function updatePost($id)
+    {
+        $post = new PostsRepository();
+        $updatepost=$post->getPostById($id);
+
+
+        if (!empty($_POST)) {
+            $titleup=htmlspecialchars($_POST['title']);
+            $chapoup=htmlspecialchars($_POST['chapo']);
+            $contentup=htmlspecialchars($_POST['content']);
+            $iduserpostup=authentification\Session::getUserlog();
+
+            $dateup=date('Y-m-d H:i:s');
+            $postarrayup = new Posts(array(
+                'title' => $titleup,
+                'chapo' => $chapoup,
+                'content' => $contentup,
+                'updatedate' => $dateup,
+                'updateuser' => $iduserpostup,
+                'id' => $id
+            ));
+
+
+            $updpost=new PostsRepository();
+            $updpost->updatePost($postarrayup);
+            authentification\Session::setFlash('Article Modifié avec succès!!');
+
+            header("Location:index.php?key=blogadmin");
+        }
+
+
+
+
+        echo $this->twig->render('updatepost.html.twig', array('updatepost'=>$updatepost));
+    }
+
 
 }
