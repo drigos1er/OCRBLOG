@@ -67,7 +67,7 @@
                                 {{ c.content }}
                             </p><br>
 
-                            <div style="text-align: right; color: #0b2e13">  Dernière Mise à jour   {{ c.updatedate|date("d/m/Y") }} par  {{ tableuser[k]}}  &nbsp;&nbsp;{% if c.valid==1 %}<a  href="index.php?key=unvalidcomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}" title="Annuler Validation"><i class="fa fa-check-circle text-danger"></i> </a> {% endif %} &nbsp;&nbsp;&nbsp;{% if c.valid==0 %} <a  href="index.php?key=validcomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}" title="Valider"><i class="fa fa-check-circle text-success"></i> </a> {% endif %} &nbsp;&nbsp;&nbsp;<a  href="index.php?key=deletecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}"><i class="fa fa-trash text-danger"></i> </a>  </div>
+                            <div style="text-align: right; color: #0b2e13">  Dernière Mise à jour   {{ c.updatedate|date("d/m/Y") }} par  {{ tableuser[k]}}  &nbsp;&nbsp;{% if c.valid==1 %}<a  href="index.php?key=unvalidcomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}" title="Annuler Validation"><i class="fa fa-check-circle text-danger"></i> </a> {% endif %} &nbsp;&nbsp;&nbsp;{% if c.valid !=1 %} <a  href="index.php?key=validcomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}" title="Valider"><i class="fa fa-check-circle text-success"></i> </a> {% endif %} &nbsp;&nbsp;&nbsp;<a  href="index.php?key=deletecommentadmin&&postid={{  detailspost.id }}&&commentid={{ c.id }}" title="Supprimer"><i class="fa fa-trash text-danger"></i> </a>  </div>
                         </div><!-- /post-meta -->
                         <hr style="color: red;">
 

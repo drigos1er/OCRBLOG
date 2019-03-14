@@ -95,9 +95,30 @@ class PostsRepository
     }
 
 
+    /**
+     * @param $id
+     */
     public function deletePost($id)
     {
         $this->db->query("DELETE FROM posts  WHERE id=?", [$id]);
+    }
+
+
+    /**
+     * @param $id
+     */
+    public function publishPost($id)
+    {
+        $this->db->query("UPDATE posts SET published=1 WHERE id=?", [$id]);
+    }
+
+
+    /**
+     * @param $id
+     */
+    public function unpublishPost($id)
+    {
+        $this->db->query("UPDATE posts SET published=0 WHERE id=?", [$id]);
     }
 
 }

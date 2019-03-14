@@ -22,6 +22,14 @@ class Session extends IndexController
     }
 
 
+
+    public static function setTypeuser($message)
+    {
+        $_SESSION['typeuser']=$message;
+    }
+
+
+
     public static function setNotification($message)
     {
         $_SESSION['notice']=$message;

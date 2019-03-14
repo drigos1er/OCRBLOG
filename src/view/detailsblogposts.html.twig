@@ -67,7 +67,7 @@
                                 {{ c.content }}
                             </p><br>
 
-                            <div style="text-align: right; color: #0b2e13">  Dernière Mise à jour   {{ c.updatedate|date("d/m/Y") }} par  {{ tableuser[k]}}  {% if session.userlog==c.createuser %} &nbsp;&nbsp;<a  href="index.php?key=updatecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}"><i class="fa fa-edit text-warning"></i> </a>  &nbsp;&nbsp;&nbsp;<a  href="index.php?key=deletecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}"><i class="fa fa-trash text-danger"></i> </a> {% endif %} </div>
+                            <div style="text-align: right; color: #0b2e13">  Dernière Mise à jour   {{ c.updatedate|date("d/m/Y") }} par  {{ tableuser[k]}}  {% if session.userlog==c.createuser %} &nbsp;&nbsp;<a  href="index.php?key=updatecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}" title="Modifier"><i class="fa fa-edit text-warning"></i> </a>  &nbsp;&nbsp;&nbsp;<a  href="index.php?key=deletecomment&&postid={{  detailspost.id }}&&commentid={{ c.id }}" title="Supprimer"><i class="fa fa-trash text-danger"></i> </a> {% endif %} </div>
                         </div><!-- /post-meta -->
                         <hr style="color: red;">
 
