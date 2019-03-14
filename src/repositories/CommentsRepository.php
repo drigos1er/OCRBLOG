@@ -74,4 +74,10 @@ class CommentsRepository
         $this->db->query("DELETE FROM comments  WHERE id=?", [$id]);
     }
 
+
+
+
+
+
+
 }

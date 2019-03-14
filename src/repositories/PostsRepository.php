@@ -95,6 +95,9 @@ class PostsRepository
     }
 
 
-
+    public function deletePost($id)
+    {
+        $this->db->query("DELETE FROM posts  WHERE id=?", [$id]);
+    }
 
 }
