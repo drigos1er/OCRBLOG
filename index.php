@@ -4,6 +4,9 @@ if (isset($_GET['key'])) {
     if ($_GET['key'] == 'register') {
         $reg= new \Blog\controller\LoginController();
         $reg->register();
+    } elseif ($_GET['key'] == 'registeradmin') {
+        $reg= new \Blog\controller\LoginController();
+        $reg->registeradmin();
     } elseif ($_GET['key'] == 'login') {
         $log= new \Blog\controller\LoginController();
         $log->login();
@@ -47,35 +50,30 @@ if (isset($_GET['key'])) {
         if ($idcomment != 0 and $idpost != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
             $upcomment->deleteComment($idpost, $idcomment);
-
         }
     } elseif ($_GET['key'] == 'updatepost') {
         $idarticle = intval($_GET['id']);
         if ($idarticle != 0) {
             $updatpost = new \Blog\controller\BlogPostController();
             $updatpost->updatePost($idarticle);
-
         }
     } elseif ($_GET['key'] == 'deletepost') {
         $idarticle = intval($_GET['id']);
         if ($idarticle != 0) {
             $deletepost = new \Blog\controller\BlogPostController();
             $deletepost->deletePost($idarticle);
-
         }
     } elseif ($_GET['key'] == 'publishpost') {
         $idarticle = intval($_GET['id']);
         if ($idarticle != 0) {
             $publishpost = new \Blog\controller\BlogPostController();
             $publishpost->publishPost($idarticle);
-
         }
     } elseif ($_GET['key'] == 'unpublishpost') {
         $idarticle = intval($_GET['id']);
         if ($idarticle != 0) {
             $publishpost = new \Blog\controller\BlogPostController();
             $publishpost->unpublishPost($idarticle);
-
         }
     } elseif ($_GET['key'] == 'detailspostadmin') {
         $idarticle = intval($_GET['id']);
@@ -89,7 +87,6 @@ if (isset($_GET['key'])) {
         if ($idcomment != 0 and $idpost != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
             $upcomment->validComment($idpost, $idcomment);
-
         }
     } elseif ($_GET['key'] == 'unvalidcomment') {
         $idpost = intval($_GET['postid']);
@@ -97,7 +94,6 @@ if (isset($_GET['key'])) {
         if ($idcomment != 0 and $idpost != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
             $upcomment->unvalidComment($idpost, $idcomment);
-
         }
     } elseif ($_GET['key'] == 'deletecommentadmin') {
         $idpost = intval($_GET['postid']);
@@ -105,10 +101,8 @@ if (isset($_GET['key'])) {
         if ($idcomment != 0 and $idpost != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
             $upcomment->deleteCommentadmin($idpost, $idcomment);
-
         }
     }
-
 } else {
     $index = new Blog\controller\HomeController();
     $index->home();

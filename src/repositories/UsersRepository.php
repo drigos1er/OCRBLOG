@@ -51,7 +51,11 @@ class UsersRepository
 
         $data = $rec->fetch(\PDO::FETCH_ASSOC);
 
-        return  new Users($data);
+        if($data)
+        {
+            return  new Users($data);
+        }
+
     }
 
 

@@ -24,8 +24,7 @@
     <link href="../OCRBLOG/public/css/styles.css" rel="stylesheet">
     <link href="../OCRBLOG/public/css/color/default.css" rel="stylesheet" id="color_theme">
     <!-- / -->
-    <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" />
     <!-- / -->
@@ -60,22 +59,23 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarRyan">
                 <ul class="navbar-nav">
 
-                    <li><a class="nav-link active" href="index.php">ACCUEIL</a></li>
+                    <li><a class="nav-link" href="index.php">ACCUEIL</a></li>
 
 
-                    {% if session.typeuser=="administrateur" %} <li><a class="nav-link" href="index.php?key=blogadmin"> NOS ARTICLES </a></li>{% endif %}
+                    {% if session.typeuser=="administrator" %} <li><a class="nav-link" href="index.php?key=blogadmin"> NOS ARTICLES </a></li>{% endif %}
 
 
-                    {% if session.typeuser != "administrateur" %} <li><a class="nav-link" href="index.php?key=blogpost"> NOS ARTICLES </a></li>{% endif %}
+                    {% if session.typeuser != "administrator" %} <li><a class="nav-link" href="index.php?key=blogpost"> NOS ARTICLES </a></li>{% endif %}
 
-                    <li><a class="nav-link" href="index.php?key=formcontact">CONTACTEZ NOUS </a></li>
-                    {% if session.username==null %}<li><a class="nav-link" href="index.php?key=register">CONNECTEZ VOUS</a></li>{% endif %}
+
+                    {% if session.username==null %}<li><a class="nav-link" href="index.php?key=register">CONNEXION</a></li>{% endif %}
 
                     {% if session.username %} <li><a class="nav-link" href="index.php?key=profil&&id={{ session.userlog }} ">MON PROFIL(<span style="color: #00c6ff; font-weight: bold" >{{ session.username }}</span>)</a></li>{% endif %}
 
                     {% if session.username %} <li><a class="nav-link" href="index.php?key=logout">DECONNEXION</a></li>{% endif %}
 
-
+                    {% if session.typeuser == "administrator" %} <li><a class="nav-link" href="index.php?key=registeradmin"> AJOUTER COMPTE ADMINISTRATEUR </a></li>{% endif %}
+                    <li><a class="nav-link" href="index.php?key=formcontact">CONTACTEZ NOUS </a></li>
                 </ul>
             </div>
             <!-- / -->

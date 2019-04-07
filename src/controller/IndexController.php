@@ -25,7 +25,6 @@ class IndexController
         $this->twig = new Twig_Environment($loader, array('debug' => true));
         $this->twig->addGlobal('session', $_SESSION);
     }
-
-
-
 }
+
+
