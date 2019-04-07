@@ -12,4 +12,5 @@ class HomeController extends IndexController
 
         echo $this->twig->render('home.html.twig');
     }
+
 }

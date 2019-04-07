@@ -84,21 +84,21 @@ if (isset($_GET['key'])) {
     } elseif ($_GET['key'] == 'validcomment') {
         $idpost = intval($_GET['postid']);
         $idcomment = intval($_GET['commentid']);
-        if ($idcomment != 0 and $idpost != 0) {
+        if ($idcomment != 0 && $idpost != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
             $upcomment->validComment($idpost, $idcomment);
         }
     } elseif ($_GET['key'] == 'unvalidcomment') {
         $idpost = intval($_GET['postid']);
         $idcomment = intval($_GET['commentid']);
-        if ($idcomment != 0 and $idpost != 0) {
+        if ($idcomment != 0  && $idpost != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
             $upcomment->unvalidComment($idpost, $idcomment);
         }
     } elseif ($_GET['key'] == 'deletecommentadmin') {
         $idpost = intval($_GET['postid']);
         $idcomment = intval($_GET['commentid']);
-        if ($idcomment != 0 and $idpost != 0) {
+        if ($idcomment != 0 && $idpost != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
             $upcomment->deleteCommentadmin($idpost, $idcomment);
         }
