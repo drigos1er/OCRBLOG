@@ -27,15 +27,15 @@ class PostsRepository
     public function getallPublishPost()
     {
 
-          $posts=[];
+          $postspublish=[];
           $stmt = $this->db->query('SELECT * FROM posts where published=1 order by updatedate desc');
           $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         for ($i=0; $i< count($data); $i++) {
-            $post = new Posts($data[$i]) ;
-            array_push($posts, $post);
+            $postpublish = new Posts($data[$i]) ;
+            array_push($postspublish, $postpublish);
         }
-        return $posts ;
+        return $postspublish ;
     }
 
 

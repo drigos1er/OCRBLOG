@@ -39,7 +39,7 @@ class FormContactController extends IndexController
             }
 
             if ($valid->isValidator()) {
-                $contenu_message = "Nom : ".$name."\nMail : ".$mail."\nSujet : ".$subject."\nMessage : ".$message;
+                $contenu_message = "Nom : ".$name."\nMail : ".$email."\nSujet : ".$subject."\nMessage : ".$message;
                 $entete = "From: ".$name." <".$email."> \nContent-Type: text/html; charset=iso-8859-1";
                 mail($emailinfo, $subject, $contenu_message, $entete);
 

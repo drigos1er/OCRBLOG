@@ -1,5 +1,6 @@
 <?php
 require('vendor/autoload.php');
+
 if (isset($_GET['key'])) {
     if ($_GET['key'] == 'register') {
         $reg= new \Blog\controller\LoginController();
@@ -38,69 +39,69 @@ if (isset($_GET['key'])) {
             $detailspost->detailsPost($idarticle);
         }
     } elseif ($_GET['key'] == 'updatecomment') {
-        $idpost = intval($_GET['postid']);
-        $idcomment = intval($_GET['commentid']);
-        if ($idcomment != 0 and $idpost != 0) {
+        $idpostup = intval($_GET['postid']);
+        $idcommentup = intval($_GET['commentid']);
+        if ($idcommentup != 0 and $idpostup != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
-            $upcomment->updateComment($idpost, $idcomment);
+            $upcomment->updateComment($idpostup, $idcommentup);
         }
     } elseif ($_GET['key'] == 'deletecomment') {
-        $idpost = intval($_GET['postid']);
-        $idcomment = intval($_GET['commentid']);
-        if ($idcomment != 0 and $idpost != 0) {
-            $upcomment = new \Blog\controller\BlogPostController();
-            $upcomment->deleteComment($idpost, $idcomment);
+        $idpostdel = intval($_GET['postid']);
+        $idcommentdel = intval($_GET['commentid']);
+        if ($idcommentdel != 0 and $idpostdel != 0) {
+            $delcomment = new \Blog\controller\BlogPostController();
+            $delcomment->deleteComment($idpostdel, $idcommentdel);
         }
     } elseif ($_GET['key'] == 'updatepost') {
-        $idarticle = intval($_GET['id']);
-        if ($idarticle != 0) {
+        $idarticleup = intval($_GET['id']);
+        if ($idarticleup != 0) {
             $updatpost = new \Blog\controller\BlogPostController();
-            $updatpost->updatePost($idarticle);
+            $updatpost->updatePost($idarticleup);
         }
     } elseif ($_GET['key'] == 'deletepost') {
-        $idarticle = intval($_GET['id']);
-        if ($idarticle != 0) {
+        $idarticledel = intval($_GET['id']);
+        if ($idarticledel != 0) {
             $deletepost = new \Blog\controller\BlogPostController();
-            $deletepost->deletePost($idarticle);
+            $deletepost->deletePost($idarticledel);
         }
     } elseif ($_GET['key'] == 'publishpost') {
-        $idarticle = intval($_GET['id']);
-        if ($idarticle != 0) {
+        $idarticlepub = intval($_GET['id']);
+        if ($idarticlepub != 0) {
             $publishpost = new \Blog\controller\BlogPostController();
-            $publishpost->publishPost($idarticle);
+            $publishpost->publishPost($idarticlepub);
         }
     } elseif ($_GET['key'] == 'unpublishpost') {
-        $idarticle = intval($_GET['id']);
-        if ($idarticle != 0) {
+        $idarticleunp = intval($_GET['id']);
+        if ($idarticleunp != 0) {
             $publishpost = new \Blog\controller\BlogPostController();
-            $publishpost->unpublishPost($idarticle);
+            $publishpost->unpublishPost($idarticleunp);
         }
     } elseif ($_GET['key'] == 'detailspostadmin') {
-        $idarticle = intval($_GET['id']);
-        if ($idarticle != 0) {
+        $idarticledet = intval($_GET['id']);
+        if ($idarticledet != 0) {
             $detailspost = new \Blog\controller\BlogPostController();
-            $detailspost->detailsPostadmin($idarticle);
+            $detailspost->detailsPostadmin($idarticledet);
         }
     } elseif ($_GET['key'] == 'validcomment') {
-        $idpost = intval($_GET['postid']);
-        $idcomment = intval($_GET['commentid']);
-        if ($idcomment != 0 && $idpost != 0) {
-            $upcomment = new \Blog\controller\BlogPostController();
-            $upcomment->validComment($idpost, $idcomment);
+        $idpostva = intval($_GET['postid']);
+        $idcommentva = intval($_GET['commentid']);
+        if ($idcommentva != 0 && $idpostva != 0) {
+            $vacomment = new \Blog\controller\BlogPostController();
+            $vacomment->validComment($idpostva, $idcommentva);
         }
     } elseif ($_GET['key'] == 'unvalidcomment') {
-        $idpost = intval($_GET['postid']);
-        $idcomment = intval($_GET['commentid']);
-        if ($idcomment != 0  && $idpost != 0) {
-            $upcomment = new \Blog\controller\BlogPostController();
-            $upcomment->unvalidComment($idpost, $idcomment);
+        $idpostunva = intval($_GET['postid']);
+        $idcommentunva = intval($_GET['commentid']);
+        if ($idcommentunva != 0  && $idpostunva != 0) {
+            $unvacomment = new \Blog\controller\BlogPostController();
+            $unvacomment->unvalidComment($idpostunva, $idcommentunva);
         }
     } elseif ($_GET['key'] == 'deletecommentadmin') {
-        $idpost = intval($_GET['postid']);
-        $idcomment = intval($_GET['commentid']);
-        if ($idcomment != 0 && $idpost != 0) {
-            $upcomment = new \Blog\controller\BlogPostController();
-            $upcomment->deleteCommentadmin($idpost, $idcomment);
+        $idpostdelc = intval($_GET['postid']);
+        $idcommentdelc = intval($_GET['commentid']);
+        if ($idcommentdelc != 0 && $idpostdelc != 0) {
+            $delccomment = new \Blog\controller\BlogPostController();
+            $delccomment->deleteCommentadmin($idpostdelc, $idcommentdelc);
         }
     }
 } else {

@@ -47,15 +47,15 @@ class CommentsRepository
      */
     public function getallCommentsadmin($postid)
     {
-        $comments=[];
+        $commentsadmin=[];
         $stmt = $this->db->query("SELECT * FROM comments where postid=?   order by updatedate desc", [$postid]);
         $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         for ($i=0; $i< count($data); $i++) {
-            $comment = new Comments($data[$i]) ;
-            array_push($comments, $comment);
+            $commentadmin = new Comments($data[$i]) ;
+            array_push($commentsadmin, $commentadmin);
         }
-        return $comments ;
+        return $commentsadmin ;
     }
 
 
@@ -107,7 +107,7 @@ class CommentsRepository
      */
     public function validComment($id)
     {
-        $this->db->query("UPDATE Comments SET valid=1 WHERE id=?", [$id]);
+        $this->db->query("UPDATE comments SET valid=1 WHERE id=?", [$id]);
     }
 
 
@@ -116,7 +116,7 @@ class CommentsRepository
      */
     public function unvalidComment($id)
     {
-        $this->db->query("UPDATE Comments SET valid=0 WHERE id=?", [$id]);
+        $this->db->query("UPDATE comments SET valid=0 WHERE id=?", [$id]);
     }
 
 
