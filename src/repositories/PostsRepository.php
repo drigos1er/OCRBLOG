@@ -32,7 +32,7 @@ class PostsRepository
           $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         for ($i=0; $i< count($data); $i++) {
-            $postpublish = new Posts($data[$i]) ;
+            $postpublish = new Posts($data[$i]);
             array_push($postspublish, $postpublish);
         }
         return $postspublish ;

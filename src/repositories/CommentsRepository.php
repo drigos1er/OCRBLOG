@@ -32,7 +32,7 @@ class CommentsRepository
         $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         for ($i=0; $i< count($data); $i++) {
-            $comment = new Comments($data[$i]) ;
+            $comment = new Comments($data[$i]);
             array_push($comments, $comment);
         }
         return $comments ;
@@ -52,7 +52,7 @@ class CommentsRepository
         $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         for ($i=0; $i< count($data); $i++) {
-            $commentadmin = new Comments($data[$i]) ;
+            $commentadmin = new Comments($data[$i]);
             array_push($commentsadmin, $commentadmin);
         }
         return $commentsadmin ;

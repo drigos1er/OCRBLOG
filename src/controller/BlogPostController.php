@@ -252,46 +252,46 @@ class BlogPostController extends IndexController
         authentification\Session::resetFlash();
 
 
-        $post = new PostsRepository();
-        $detailspost=$post->getPostById($id);
-        $comment= new CommentsRepository();
-        $detailscomment=$comment->getallCommentsadmin($id);
-        $userupdate=  new UsersRepository();
-        $upduser=$userupdate->getUserById($detailspost->getUpdateuser());
+        $postad = new PostsRepository();
+        $detailspostad=$postad->getPostById($id);
+        $commentad= new CommentsRepository();
+        $detailscommentad=$commentad->getallCommentsadmin($id);
+        $userupdatead=  new UsersRepository();
+        $upduserad=$userupdatead->getUserById($detailspostad->getUpdateuser());
 
-        $tableuser=array();
-        foreach ($detailscomment as $allcomment) {
-            $usercom= new UsersRepository();
-            $idusercom=$usercom->getUserById($allcomment->getCreateuser());
-            $idusercomname=$idusercom->getUsername();
-            array_push($tableuser, $idusercomname);
+        $tableuserad=array();
+        foreach ($detailscommentad as $allcommentad) {
+            $usercomad= new UsersRepository();
+            $idusercomad=$usercomad->getUserById($allcommentad->getCreateuser());
+            $idusercomnamead=$idusercomad->getUsername();
+            array_push($tableuserad, $idusercomnamead);
         }
 
 
 
         if (!empty($_POST)) {
-            $contentcom=htmlspecialchars($_POST['content']);
-            $datecreatecom=date('Y-m-d H:i:s');
-            $iduserlog=authentification\Session::getUserlog();
-            $commentarray = new Comments(array(
-                'content' => $contentcom,
-                'createdate' => $datecreatecom,
-                'updatedate' => $datecreatecom,
-                'createuser' => $iduserlog,
-                'updateuser' => $iduserlog,
+            $contentcomad=htmlspecialchars($_POST['content']);
+            $datecreatecomad=date('Y-m-d H:i:s');
+            $iduserlogad=authentification\Session::getUserlog();
+            $commentarrayad = new Comments(array(
+                'content' => $contentcomad,
+                'createdate' => $datecreatecomad,
+                'updatedate' => $datecreatecomad,
+                'createuser' => $iduserlogad,
+                'updateuser' => $iduserlogad,
                 'postid' => $id
             ));
 
 
-            $insertcomment=new CommentsRepository();
-            $insertcomment->addComment($commentarray);
+            $insertcommentad=new CommentsRepository();
+            $insertcommentad->addComment($commentarrayad);
             authentification\Session::setFlash('Commentaire Ajouté avec succès!! Il s\'affichera après validation');
 
             header("Location:index.php?key=detailspost&&id=$id");
         }
 
-        echo $this->twig->render('detailsblogpostsadmin.html.twig', array('detailspost'=>$detailspost,
-            'detailscomment'=>$detailscomment, 'tableuser'=>$tableuser, 'upduser'=>$upduser->getUsername()));
+        echo $this->twig->render('detailsblogpostsadmin.html.twig', array('detailspost'=>$detailspostad,
+            'detailscomment'=>$detailscommentad, 'tableuser'=>$tableuserad, 'upduser'=>$upduserad->getUsername()));
     }
 
     /**
