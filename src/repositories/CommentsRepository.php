@@ -21,14 +21,15 @@ class CommentsRepository
 
 
     /**
-     * all comments
+     * All comments
+     *
      * @param $postid
      * @return array
      */
-    public function getallComments($postid)
+    public function getallComments($pid)
     {
         $comments=[];
-        $stmt = $this->db->query("SELECT * FROM comments where postid=?  and valid=1 order by updatedate desc", [$postid]);
+        $stmt = $this->db->query("SELECT * FROM comments where postid=?  and valid=1 order by updatedate desc", [$pid]);
         $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         for ($i=0; $i< count($data); $i++) {
@@ -41,9 +42,9 @@ class CommentsRepository
 
 
     /**
-     * all comments
-     * @param $postid
-     * @return array
+     *  All comments
+     *  @param $postid
+     *  @return array
      */
     public function getallCommentsadmin($postid)
     {
@@ -89,7 +90,12 @@ class CommentsRepository
      */
     public function updComment(Comments $comments)
     {
-        $this->db->query("UPDATE comments SET content=?, updatedate=?, updateuser=? WHERE id=?", [$comments->getContent(), $comments->getUpdatedate(), $comments->getUpdateuser(), $comments->getId()]);
+        $ct=$comments->getContent();
+        $upd=$comments->getUpdatedate();
+        $us=$comments->getUpdateuser();
+        $id=$comments->getId();
+
+        $this->db->query("UPDATE comments SET content=?, updatedate=?, updateuser=? WHERE id=?", [$ct, $upd, $us, $id]);
     }
 
 

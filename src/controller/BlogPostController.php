@@ -18,7 +18,7 @@ class BlogPostController extends IndexController
 
 
     /**
-     * list of posts
+     * List of posts
      */
     public function listPost()
     {
@@ -41,14 +41,14 @@ class BlogPostController extends IndexController
 
 
         $post = new PostsRepository();
-        $detailspost=$post->getPostById($id);
+        $dpt=$post->getPostById($id);
         $comment= new CommentsRepository();
-        $detailscomment=$comment->getallComments($id);
+        $dct=$comment->getallComments($id);
         $userupdate=  new UsersRepository();
-        $upduser=$userupdate->getUserById($detailspost->getUpdateuser());
+        $upduser=$userupdate->getUserById($dpt->getUpdateuser());
 
-        $tableuser=array();
-        foreach ($detailscomment as $allcomment) {
+        $tusr=array();
+        foreach ($dct as $allcomment) {
             $usercom= new UsersRepository();
             $idusercom=$usercom->getUserById($allcomment->getCreateuser());
             $idusercomname=$idusercom->getUsername();
@@ -56,7 +56,7 @@ class BlogPostController extends IndexController
         }
 
 
-
+        $upsr=$upduser->getUsername();
         if (!empty($_POST)) {
             $contentcom=htmlspecialchars($_POST['content']);
             $datecreatecom=date('Y-m-d H:i:s');
@@ -78,8 +78,8 @@ class BlogPostController extends IndexController
             header("Location:index.php?key=detailspost&&id=$id");
         }
 
-        echo $this->twig->render('detailsblogposts.html.twig', array('detailspost'=>$detailspost,
-            'detailscomment'=>$detailscomment, 'tableuser'=>$tableuser, 'upduser'=>$upduser->getUsername()));
+        echo $this->twig->render('detailsblogposts.html.twig',
+        array('detailspost'=>$dpt, 'detailscomment'=>$dct, 'tableuser'=>$tusr, 'upduser'=>$upsr));
     }
 
 
@@ -253,20 +253,20 @@ class BlogPostController extends IndexController
 
 
         $postad = new PostsRepository();
-        $detailspostad=$postad->getPostById($id);
+        $dpad=$postad->getPostById($id);
         $commentad= new CommentsRepository();
-        $detailscommentad=$commentad->getallCommentsadmin($id);
+        $dcad=$commentad->getallCommentsadmin($id);
         $userupdatead=  new UsersRepository();
-        $upduserad=$userupdatead->getUserById($detailspostad->getUpdateuser());
+        $upduserad=$userupdatead->getUserById($dpad->getUpdateuser());
 
-        $tableuserad=array();
-        foreach ($detailscommentad as $allcommentad) {
+        $tusrad=array();
+        foreach ($dcad as $allcommentad) {
             $usercomad= new UsersRepository();
             $idusercomad=$usercomad->getUserById($allcommentad->getCreateuser());
             $idusercomnamead=$idusercomad->getUsername();
             array_push($tableuserad, $idusercomnamead);
         }
-
+        $usrad=$upduserad->getUsername();
 
 
         if (!empty($_POST)) {
@@ -285,17 +285,17 @@ class BlogPostController extends IndexController
 
             $insertcommentad=new CommentsRepository();
             $insertcommentad->addComment($commentarrayad);
-            authentification\Session::setFlash('Commentaire Ajouté avec succès!! Il s\'affichera après validation');
+            authentification\Session::setFlash('Commentaire Ajouté avec succès!!');
 
             header("Location:index.php?key=detailspost&&id=$id");
         }
 
-        echo $this->twig->render('detailsblogpostsadmin.html.twig', array('detailspost'=>$detailspostad,
-            'detailscomment'=>$detailscommentad, 'tableuser'=>$tableuserad, 'upduser'=>$upduserad->getUsername()));
+        echo $this->twig->render('detailsblogpostsadmin.html.twig', array('detailspost'=>$dpad,
+            'detailscomment'=>$dcad, 'tableuser'=>$tusrad, 'upduser'=>$usrad));
     }
 
     /**
-     * valid comment
+     * Valid comment
      * @param $idpost
      * @param $idcomment
      */
@@ -310,7 +310,7 @@ class BlogPostController extends IndexController
 
 
     /**
-     * unvalid comment
+     * Unvalid comment
      * @param $idpost
      * @param $idcomment
      */
@@ -325,7 +325,7 @@ class BlogPostController extends IndexController
 
 
     /**
-     * delete comment admin
+     * Delete comment admin
      * @param $idpost
      * @param $idcomment
      */
@@ -352,7 +352,7 @@ class BlogPostController extends IndexController
     }
 
     /**
-     * unPublish  Post
+     * UnPublish  Post
      * @param $id
      */
     public function unpublishPost($id)
