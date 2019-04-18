@@ -10,14 +10,14 @@ use Blog\config\Config;
 
 class PostsRepository
 {
-    private $_db;
+    private $db;
 
     /**
      * PostRepository constructor.
      */
     public function __construct()
     {
-        $this->_db=Config::getCdb();
+        $this->db=Config::getCdb();
     }
 
 
@@ -28,7 +28,7 @@ class PostsRepository
     {
 
           $postspublish=[];
-          $stmt = $this->_db->query('SELECT * FROM posts where published=1 order by updatedate desc');
+          $stmt = $this->db->query('SELECT * FROM posts where published=1 order by updatedate desc');
           $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         for ($i=0; $i< count($data); $i++) {
@@ -46,7 +46,7 @@ class PostsRepository
     {
         $posts=[];
 
-        $stmt = $this->_db->query('SELECT * FROM posts   order by updatedate desc');
+        $stmt = $this->db->query('SELECT * FROM posts   order by updatedate desc');
         $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         for ($i=0; $i< count($data); $i++) {
@@ -67,7 +67,7 @@ class PostsRepository
     public function getPostById($id)
     {
 
-        $stmt = $this->_db->query("SELECT * FROM posts WHERE id=?", [$id]);
+        $stmt = $this->db->query("SELECT * FROM posts WHERE id=?", [$id]);
 
         $data = $stmt->fetch(\PDO::FETCH_ASSOC);
 
@@ -89,7 +89,7 @@ class PostsRepository
         $pus=$posts->getUpdateuser();
 
 
-        $this->_db->query("INSERT INTO posts SET title=?, chapo=?, content=?, createdate=?, createuser=?, updatedate=?, updateuser=?", [$pt, $pc, $pco, $pcd, $pcu, $pud, $pus]);
+        $this->db->query("INSERT INTO posts SET title=?, chapo=?, content=?, createdate=?, createuser=?, updatedate=?, updateuser=?", [$pt, $pc, $pco, $pcd, $pcu, $pud, $pus]);
     }
 
 
@@ -98,7 +98,7 @@ class PostsRepository
      */
     public function updatePost(Posts $posts)
     {
-        $this->_db->query("UPDATE posts SET title=?, chapo=?, content=?, updatedate=?, updateuser=? WHERE id=?", [$posts->getTitle(), $posts->getChapo(),
+        $this->db->query("UPDATE posts SET title=?, chapo=?, content=?, updatedate=?, updateuser=? WHERE id=?", [$posts->getTitle(), $posts->getChapo(),
             $posts->getContent(), $posts->getUpdatedate(), $posts->getUpdateuser(), $posts->getId()]);
     }
 
@@ -108,7 +108,7 @@ class PostsRepository
      */
     public function deletePost($id)
     {
-        $this->_db->query("DELETE FROM posts  WHERE id=?", [$id]);
+        $this->db->query("DELETE FROM posts  WHERE id=?", [$id]);
     }
 
 
@@ -117,7 +117,7 @@ class PostsRepository
      */
     public function publishPost($id)
     {
-        $this->_db->query("UPDATE posts SET published=1 WHERE id=?", [$id]);
+        $this->db->query("UPDATE posts SET published=1 WHERE id=?", [$id]);
     }
 
 
@@ -126,7 +126,7 @@ class PostsRepository
      */
     public function unpublishPost($id)
     {
-        $this->_db->query("UPDATE posts SET published=0 WHERE id=?", [$id]);
+        $this->db->query("UPDATE posts SET published=0 WHERE id=?", [$id]);
     }
 
 }

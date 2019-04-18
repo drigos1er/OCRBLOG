@@ -92,10 +92,10 @@ class CommentsRepository
     {
         $ct=$comments->getContent();
         $upd=$comments->getUpdatedate();
-        $us=$comments->getUpdateuser();
-        $id=$comments->getId();
+        $usr=$comments->getUpdateuser();
+        $cid=$comments->getId();
 
-        $this->db->query("UPDATE comments SET content=?, updatedate=?, updateuser=? WHERE id=?", [$ct, $upd, $us, $id]);
+        $this->db->query("UPDATE comments SET content=?, updatedate=?, updateuser=? WHERE id=?", [$ct, $upd, $usr, $cid]);
     }
 
 
