@@ -41,14 +41,14 @@ if (isset($_GET['key'])) {
     } elseif ($_GET['key'] == 'updatecomment') {
         $idpostup = intval($_GET['postid']);
         $idcommentup = intval($_GET['commentid']);
-        if ($idcommentup != 0 and $idpostup != 0) {
+        if ($idcommentup != 0 &&  $idpostup != 0) {
             $upcomment = new \Blog\controller\BlogPostController();
             $upcomment->updateComment($idpostup, $idcommentup);
         }
     } elseif ($_GET['key'] == 'deletecomment') {
         $idpostdel = intval($_GET['postid']);
         $idcommentdel = intval($_GET['commentid']);
-        if ($idcommentdel != 0 and $idpostdel != 0) {
+        if ($idcommentdel != 0 &&  $idpostdel != 0) {
             $delcomment = new \Blog\controller\BlogPostController();
             $delcomment->deleteComment($idpostdel, $idcommentdel);
         }
