@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eb0cbfb1-9405-4923-80b2-b2b166f5467d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/controller/BlogPostController.php" afterPath="$PROJECT_DIR$/src/controller/BlogPostController.php" />
-      <change beforePath="$PROJECT_DIR$/src/view/blogposts.html.twig" afterPath="$PROJECT_DIR$/src/view/blogposts.html.twig" />
-    </list>
+    <list default="true" id="eb0cbfb1-9405-4923-80b2-b2b166f5467d" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,8 +76,8 @@
       <file leaf-file-name="BlogPostController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controller/BlogPostController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="809">
-              <caret line="380" column="1" lean-forward="false" selection-start-line="380" selection-start-column="1" selection-end-line="380" selection-end-column="1" />
+            <state relative-caret-position="240">
+              <caret line="21" column="7" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="380" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -307,12 +303,12 @@
       <updated>1556382571961</updated>
       <workItem from="1556382573826" duration="4379000" />
       <workItem from="1556433537565" duration="5043000" />
-      <workItem from="1556438614284" duration="90000" />
+      <workItem from="1556438614284" duration="692000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9512000" />
+    <option name="totallyTimeSpent" value="10114000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -636,8 +632,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/BlogPostController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="809">
-          <caret line="380" column="1" lean-forward="false" selection-start-line="380" selection-start-column="1" selection-end-line="380" selection-end-column="1" />
+        <state relative-caret-position="240">
+          <caret line="21" column="7" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="380" selection-end-column="1" />
           <folding />
         </state>
       </provider>
