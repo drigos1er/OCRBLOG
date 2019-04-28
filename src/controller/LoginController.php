@@ -241,25 +241,7 @@ if($loginus){
             //validation of the data sent by the user
 
             $valid = new validation\Errors($_POST);
-            // Email validation
-            if ($valid->isValidator()) {
-                $valid->isEmail('email', 'Cet email n\'est pas valide');
-                authentification\Session::setFlash('Cet email n\'est pas valide');
-                header("Location:index.php?key=profil&&id=$id");
-            }
 
-            //username availability
-            if ($valid->isValidator()) {
-                $valid->isUniq('users', 'username', 'username', 'Ce Pseudo est dejà utilisé par un autre utilisateur');
-                authentification\Session::setFlash('Ce Pseudo est dejà utilisé par un autre utilisateur');
-                header("Location:index.php?key=profil&&id=$id");
-            }
-            //email availability
-            if ($valid->isValidator()) {
-                $valid->isUniq('users', 'email', 'email', 'Cet Email  est dejà utilisé par un autre utilisateur');
-                authentification\Session::setFlash(' Email  dejà utilisé par utilisateur');
-                header("Location:index.php?key=profil&&id=$id");
-            }
             if ($valid->isValidator()) {
                 $userupdarray = new Users(array(
                     'username' => $usernameupus,
