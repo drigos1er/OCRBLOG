@@ -1,6 +1,7 @@
 # Bienvenue dans mon Blog 
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a1c183f7d72d4ed9bbb5c17d379dda07)](https://app.codacy.com/app/drigos1er/OCRBLOG?utm_source=github.com&utm_medium=referral&utm_content=drigos1er/OCRBLOG&utm_campaign=Badge_Grade_Settings)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a1c183f7d72d4ed9bbb5c17d379dda07)](https://app.codacy.com/app/drigos1er/OCRBLOG?utm_source=github.com&utm_medium=referral&utm_content=drigos1er/OCRBLOG&utm_campaign=Badge_Grade_Settings)
 
 Ceci est mon Blog personnel développé en PHP orienté objet me basant sur le design pattern MVC.
 
