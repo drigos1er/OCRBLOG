@@ -26,7 +26,22 @@ class BlogPostController extends IndexController
         $listpost=$post->getallPublishPost();
 
 
-        echo $this->twig->render('blogposts.html.twig', array('listpost'=>$listpost));
+        $tusrlst=array();
+        foreach ($listpost as $alistpost) {
+            $userupdatelpst=  new UsersRepository();
+            $upduserlst=$userupdatelpst->getUserById($alistpost->getUpdateuser());
+            $upsrlst=$upduserlst->getUsername();
+
+
+
+
+
+            array_push($tusrlst, $upsrlst);
+        }
+
+
+
+        echo $this->twig->render('blogposts.html.twig', array('listpost'=>$listpost,'tuserlst'=>$tusrlst,'upduserlst'=>$upsrlst));
     }
 
 
@@ -52,7 +67,7 @@ class BlogPostController extends IndexController
             $usercom= new UsersRepository();
             $idusercom=$usercom->getUserById($allcomment->getCreateuser());
             $idusercomname=$idusercom->getUsername();
-            array_push($tableuser, $idusercomname);
+            array_push($tusr, $idusercomname);
         }
 
 
@@ -264,7 +279,7 @@ class BlogPostController extends IndexController
             $usercomad= new UsersRepository();
             $idusercomad=$usercomad->getUserById($allcommentad->getCreateuser());
             $idusercomnamead=$idusercomad->getUsername();
-            array_push($tableuserad, $idusercomnamead);
+            array_push($tusrad, $idusercomnamead);
         }
         $usrad=$upduserad->getUsername();
 

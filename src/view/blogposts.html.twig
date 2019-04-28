@@ -37,6 +37,7 @@
 
 
                     <tbody>
+                    {% set k = 0 %}
                     {% for l in listpost %}
                         <tr>
                             <td>
@@ -51,9 +52,10 @@
                                     </p> <br>
                                     <a href="index.php?key=detailspost&&id={{ l.id }}" class="more-btn" style="font-weight: bold; font-style: italic">Voir plus... <i class="ti-arrow-right"></i></a>
 
-                                    <div style="text-align: right; color: orangered"> Dernière mise  à jour  {{ l.updatedate |date("d/m/Y")}} par {{ l.updateuser }}</div>
+                                    <div style="text-align: right; color: orangered"> Dernière mise  à jour  {{ l.updatedate |date("d/m/Y")}} par {{ tuserlst[k]}}</div>
                                 </div>
                             </td></tr>
+                        {% set k = k + 1 %}
                     {% endfor %}
                     </tbody>
                 </table>
