@@ -94,7 +94,7 @@ class BlogPostController extends IndexController
         }
 
         echo $this->twig->render('detailsblogposts.html.twig',
-        array('detailspost'=>$dpt, 'detailscomment'=>$dct, 'tableuser'=>$tusr, 'upduser'=>$upsr));
+            array('detailspost'=>$dpt, 'detailscomment'=>$dct, 'tableuser'=>$tusr, 'upduser'=>$upsr));
     }
 
 
@@ -126,7 +126,7 @@ class BlogPostController extends IndexController
             $upcomment= new CommentsRepository();
             $upcomment->updComment($updcommentarray);
             authentification\Session::setFlash('Commentaire modifié avec succès');
-             header("Location:index.php?key=detailspost&&id=$postid");
+            header("Location:index.php?key=detailspost&&id=$postid");
         }
 
         echo $this->twig->render('updatecomment.html.twig', array('detailspost'=>$detailspost, 'detailscomment'=>$detailscomment));
